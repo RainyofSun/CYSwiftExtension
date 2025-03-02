@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "0.0.7"
+  spec.version      = "0.0.8"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -85,7 +85,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/RainyofSun/CYSwiftExtension", :tag => "#{spec.version}" }
+  spec.source       = { :https => "https://github.com/RainyofSun/CYSwiftExtension", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
