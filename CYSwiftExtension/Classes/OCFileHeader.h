@@ -11,4 +11,5 @@
 #import "NSString+StringExtension.h"
 #import "UIViewController+ViewControllerExtension.h"
 
+#import "LJContactManager.h"
 #endif /* OCFileHeader_h */

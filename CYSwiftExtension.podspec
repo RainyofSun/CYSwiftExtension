@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "0.0.8"
+  spec.version      = "0.0.11"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -85,7 +85,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :https => "https://github.com/RainyofSun/CYSwiftExtension", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/RainyofSun/CYSwiftExtension", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -97,17 +97,22 @@ Pod::Spec.new do |spec|
   #
 
   # OC 文件选择模式
-  # spec.ios.source_files  = "CYSwiftExtension/Classes/*.{h,m}"
-  # spec.subspec 'String' do |spec|
-  #     spec.ios.source_files = 'CYSwiftExtension/Classes/String/*.{h,m}'
-  # end
+  spec.ios.source_files  = "CYSwiftExtension/Classes/*.{h,m}"
+  spec.subspec 'String' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/String/*.{h,m}'
+  end
 
-  # spec.subspec 'ViewController' do |spec|
-  #     spec.ios.source_files = 'CYSwiftExtension/Classes/ViewController/*.{h,m}'
-  # end
+  spec.subspec 'ContactManager' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/ContactManager/*.{h,m}'
+  end
 
-  # # Swift 文件没有头文件
-  # spec.public_header_files = "CYSwiftExtension/Classes/*.h"
+  spec.subspec 'ViewController' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/ViewController/*.{h,m}'
+      spec.dependency 'CYSwiftExtension/String'
+  end
+
+  # Swift 文件没有头文件
+  spec.public_header_files = "CYSwiftExtension/Classes/*.h"
 
   # Swift 文件选择模式
   # spec.ios.source_files  = "CYSwiftExtension/Classes/*"
