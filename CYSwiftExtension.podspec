@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "0.0.13"
+  spec.version      = "0.0.14"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -167,6 +167,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'UIButton' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/UIButton/*'
       spec.dependency "SnapKit", "5.6.0"
+      spec.dependency 'CYSwiftExtension/GradientView'
   end
 
   spec.subspec 'NetOberver' do |spec|

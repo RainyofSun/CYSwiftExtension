@@ -151,7 +151,7 @@ class GCMarqueeView: UIView {
         } else {
             dispalyLink?.frameInterval = framesPerSecond
         }
-        dispalyLink?.add(to: RunLoop.main, forMode: .common)
+        dispalyLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
     func stopRunning() {
