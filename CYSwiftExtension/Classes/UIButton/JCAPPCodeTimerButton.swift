@@ -6,20 +6,30 @@
 //
 
 import UIKit
+import SnapKit
 
 class JCAPPCodeTimerButton: UIControl {
 
-    private lazy var titleLab: UILabel = UILabel.buildJoyCashLabel(font: UIFont.systemFont(ofSize: 14), labelColor: .white, labelText: "Get code")
+    private lazy var titleLab: UILabel = {
+        let view = UIKit.UILabel(frame: CGRectZero)
+        view.numberOfLines = .zero
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.text = "Get Code"
+        view.textColor = .white
+        return view
+    }()
+    
     private var system_timer: Timer?
     
     private var time_count: Int = .zero
+    private let APP_PADDING_UNIT: CGFloat = 4
+    private var _title_text: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.initData()
         
-        self.backgroundColor = BLUE_COLOR_4169F6
         self.addSubview(self.titleLab)
         
         self.titleLab.snp.makeConstraints { make in
@@ -32,7 +42,7 @@ class JCAPPCodeTimerButton: UIControl {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = self.height * 0.5
+        self.layer.cornerRadius = self.bounds.size.height * 0.5
         self.clipsToBounds = true
     }
     
@@ -41,13 +51,12 @@ class JCAPPCodeTimerButton: UIControl {
     }
     
     deinit {
-        deallocPrint()
+        print("------ deinit -------")
     }
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let viwe = super.hitTest(point, with: event)
-        
-        return viwe
+    public func setTimerButtonTitle(_ title: String? = "Get Code") {
+        self.titleLab.text = title
+        self._title_text = title
     }
     
     public func start() {
@@ -76,10 +85,10 @@ private extension JCAPPCodeTimerButton {
 
 @objc private extension JCAPPCodeTimerButton {
     func timerCall(sender: Timer) {
-        dispatch_async_on_main_queue {
+        DispatchQueue.main.async {
             if self.time_count <= .zero {
                 self.stop()
-                self.titleLab.text = "Get code"
+                self.titleLab.text = self._title_text
                 self.initData()
             } else {
                 self.titleLab.text = "\(self.time_count)s"

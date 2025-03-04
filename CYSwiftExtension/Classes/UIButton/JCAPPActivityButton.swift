@@ -7,15 +7,16 @@
 
 import UIKit
 
+protocol ActivityAnimationProtocol: UIControl {
+    func startAnimation()
+    func stopAnimation()
+}
+
 class JCAPPActivityButton: JCAPPGradientColorButton {
 
     private var activityIndicatorView: UIActivityIndicatorView?
     private var _btnTitle: String?
     private var _btnImg: UIImage?
-    
-    deinit {
-        deallocPrint()
-    }
 }
 
 extension JCAPPActivityButton: ActivityAnimationProtocol {

@@ -124,7 +124,7 @@ class GCMarqueeView: UIView {
             tmpItem = item
         }
         
-        let Y = (self.bounds.size.height - tmpItem.size.height) * 0.5
+        let Y = (self.bounds.size.height - tmpItem.bounds.size.height) * 0.5
         if type == .rtl || type == .ltr || type == .reverse {
             scrollView.contentSize = CGSize(width: tmpItem.frame.origin.x + tmpItem.frame.size.width, height: 0);
             if type == .ltr {

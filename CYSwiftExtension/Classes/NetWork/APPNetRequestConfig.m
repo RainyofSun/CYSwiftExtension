@@ -6,7 +6,7 @@
 //
 
 #import "APPNetRequestConfig.h"
-#import "JCAPPNetRequestURLConfig.h"
+#import "APPNetRequestURLConfig.h"
 
 @implementation APPNetRequestConfig
 
@@ -38,14 +38,14 @@
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.timeoutIntervalForRequest = 30;
     config.allowsCellularAccess = YES;
-    self.manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[JCAPPNetRequestURLConfig urlConfig].networkRequestURL sessionConfiguration:config];
+    self.manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[APPNetRequestURLConfig urlConfig].networkRequestURL sessionConfiguration:config];
     self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"image/png",@"image/jpeg",@"multipart/form-data", nil];
 }
 
 - (void)updateNetworkRequestURL {
     [self.manager.requestSerializer willChangeValueForKey:@"baseURL"];
-    [self.manager setValue:[JCAPPNetRequestURLConfig urlConfig].networkRequestURL forKey:@"baseURL"];
+    [self.manager setValue:[APPNetRequestURLConfig urlConfig].networkRequestURL forKey:@"baseURL"];
     [self.manager.requestSerializer didChangeValueForKey:@"baseURL"];
 }
 

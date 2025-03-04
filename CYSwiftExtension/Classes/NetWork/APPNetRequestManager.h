@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCAPPURLMacroHeader.h"
-#import "JCAPPNetResponseModel.h"
+#import "APPURLMacroHeader.h"
+#import "APPNetResponseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

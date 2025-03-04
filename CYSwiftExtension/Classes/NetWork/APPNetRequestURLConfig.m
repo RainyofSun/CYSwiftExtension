@@ -6,8 +6,8 @@
 //
 
 #import "APPNetRequestURLConfig.h"
-#import "NSString+JCAPPStringExtension.h"
-#import "JCAPPURLMacroHeader.h"
+#import "NSString+StringExtension.h"
+#import "APPURLMacroHeader.h"
 
 @interface APPNetRequestURLConfig ()
 

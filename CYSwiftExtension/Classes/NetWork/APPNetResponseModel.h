@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger,AFNRequestType) {
 
 @end
 
-@interface JCAPPSuccessResponse : NSObject
+@interface APPSuccessResponse : NSObject
 
 /// 字典模型
 @property(nonatomic, strong) NSDictionary * _Nullable jsonDict;

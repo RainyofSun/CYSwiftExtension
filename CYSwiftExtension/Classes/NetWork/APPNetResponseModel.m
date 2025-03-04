@@ -11,7 +11,7 @@
 
 @end
 
-@implementation JCAPPSuccessResponse
+@implementation APPSuccessResponse
 
 
 

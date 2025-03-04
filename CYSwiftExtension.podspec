@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "0.0.11"
+  spec.version      = "0.0.12"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -97,9 +97,32 @@ Pod::Spec.new do |spec|
   #
 
   # OC 文件选择模式
-  spec.ios.source_files  = "CYSwiftExtension/Classes/*.{h,m}"
+  # spec.ios.source_files  = "CYSwiftExtension/Classes/*.{h,m}"
   spec.subspec 'String' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/String/*.{h,m}'
+  end
+
+  spec.subspec 'UIDevice' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/UIDevice/*.{h,m}'
+      spec.dependency "YYKit", "1.0.9"
+      spec.dependency "Reachability", "3.2"
+      spec.dependency 'CYSwiftExtension/String'
+  end
+
+  spec.subspec 'Auth' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Auth/*.{h,m}'
+      spec.dependency 'CYSwiftExtension/ViewController'
+      spec.dependency 'CYSwiftExtension/UIDevice'
+  end
+
+  spec.subspec 'NetWork' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/NetWork/*.{h,m}'
+      spec.dependency "AFNetworking", "4.0.1"
+      spec.dependency "YYKit", "1.0.9"
+      spec.dependency "Toast", "4.1.1"
+      spec.dependency 'CYSwiftExtension/String'
+      spec.dependency 'CYSwiftExtension/UIDevice'
+      spec.dependency 'CYSwiftExtension/Auth'
   end
 
   spec.subspec 'ContactManager' do |spec|
@@ -120,6 +143,42 @@ Pod::Spec.new do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ScrollView/*'
       spec.dependency "MJRefresh", "3.7.5"
   end
+
+  spec.subspec 'GradientView' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/GradientView/*'
+  end
+
+  spec.subspec 'TextView' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/TextView/*'
+  end
+
+  spec.subspec 'UITextFiled' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/UITextFiled/*'
+  end
+
+  spec.subspec 'MarqueeView' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/MarqueeView/*'
+  end
+
+  spec.subspec 'Cache' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Cache/*'
+  end
+
+  spec.subspec 'UIButton' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/UIButton/*'
+      spec.dependency "SnapKit", "5.6.0"
+  end
+
+  spec.subspec 'NetOberver' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/NetOberver/*'
+      spec.dependency "Reachability", "3.2"
+  end
+
+  spec.subspec 'ProtocolView' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/ProtocolView/*'
+      spec.dependency "SnapKit", "5.6.0"
+  end
+
   # spec.exclude_files = "Classes/Exclude"
 
 

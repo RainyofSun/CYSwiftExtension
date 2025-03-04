@@ -9,8 +9,8 @@ import UIKit
 
 class JCAPPGradientColorButton: UIButton {
 
-    private lazy var bgGradientView: JCAPPGradientColorView = {
-        let view = JCAPPGradientColorView(frame: CGRectZero)
+    private lazy var bgGradientView: GradientColorView = {
+        let view = GradientColorView(frame: CGRectZero)
         view.buildGradientWithColors()
         return view
     }()
@@ -26,9 +26,4 @@ class JCAPPGradientColorButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        deallocPrint()
-    }
-
 }

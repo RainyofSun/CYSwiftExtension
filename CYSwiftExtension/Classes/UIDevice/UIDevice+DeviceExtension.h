@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIDevice (JCAPPDeviceExtension)
+@interface UIDevice (DeviceExtension)
 
 - (NSString *)readIDFVFormDeviceKeyChain;
 - (UIWindowScene *)activeScene;
@@ -22,6 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getIPAddress;
 + (NSDictionary *)getAppDiskSize;
 + (NSString *)getFreeMemory;
++ (CGFloat)app_safeDistanceTop;
++ (CGFloat)app_safeDistanceBottom;
++ (CGFloat)app_statusBarAndSafeAreaHeight;
++ (CGFloat)app_navigationBarHeight;
++ (CGFloat)app_navigationBarAndStatusBarHeight;
++ (CGFloat)app_tabbarHeight;
++ (CGFloat)app_tabbarAndSafeAreaHeight;
 
 @end
 

@@ -6,10 +6,10 @@
 //
 
 #import "APPNetRequestManager.h"
-#import "JCAPPPublicParams.h"
+#import "APPPublicParams.h"
 #import <AFNetworking/AFNetworking.h>
 #import "APPNetRequestConfig.h"
-#import "JCAPPNetResponseModel.h"
+#import "APPNetResponseModel.h"
 #import "NSString+StringExtension.h"
 #import <YYKit/NSObject+YYModel.h>
 #import "UIDevice+DeviceExtension.h"
@@ -18,17 +18,17 @@
 @implementation APPNetRequestManager
 
 + (NSURLSessionTask *)AFNReqeustType:(NetworkRequestConfig *)requestConfig success:(SuccessCallBack)success failure:(FailureCallBack)failure {
-    NSString *requestUrl = [JCAPPPublicParams splicingPublicParams:requestConfig.requestURL];
+    NSString *requestUrl = [[APPPublicParams requestParams] splicingPublicParams:requestConfig.requestURL];
 # if DEBUG
     NSLog(@"RequestURL = \n %@ \n Params = \n %@ \n End ---------", requestConfig.requestURL, requestConfig.requestParams);
 #endif
     if (requestConfig.requestType == AFNRequestType_Get) {
         return [[APPNetRequestConfig requestConfig].manager GET:requestUrl parameters:requestConfig.requestParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            JCAPPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
+            APPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
             if (responseModel.reqeustError && failure != nil) {
                 failure(nil, responseModel.reqeustError);
             } else {
-                JCAPPSuccessResponse *response = [[JCAPPSuccessResponse alloc] init];
+                APPSuccessResponse *response = [[APPSuccessResponse alloc] init];
                 response.responseMsg = responseModel.nobel;
                 if ([responseModel.awarded isKindOfClass:[NSDictionary class]]) {
                     response.jsonDict = (NSDictionary *)responseModel.awarded;
@@ -42,11 +42,11 @@
         } failure: failure];
     } else if (requestConfig.requestType == AFNRequestType_Post) {
         return [[APPNetRequestConfig requestConfig].manager POST:requestUrl parameters:requestConfig.requestParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            JCAPPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
+            APPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
             if (responseModel.reqeustError && failure != nil) {
                 failure(nil, responseModel.reqeustError);
             } else {
-                JCAPPSuccessResponse *response = [[JCAPPSuccessResponse alloc] init];
+                APPSuccessResponse *response = [[APPSuccessResponse alloc] init];
                 response.responseMsg = responseModel.nobel;
                 if ([responseModel.awarded isKindOfClass:[NSDictionary class]]) {
                     response.jsonDict = (NSDictionary *)responseModel.awarded;
@@ -69,11 +69,11 @@
                 }
             }];
         } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            JCAPPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
+            APPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
             if (responseModel.reqeustError && failure != nil) {
                 failure(nil, responseModel.reqeustError);
             } else {
-                JCAPPSuccessResponse *response = [[JCAPPSuccessResponse alloc] init];
+                APPSuccessResponse *response = [[APPSuccessResponse alloc] init];
                 response.responseMsg = responseModel.nobel;
                 if ([responseModel.awarded isKindOfClass:[NSDictionary class]]) {
                     response.jsonDict = (NSDictionary *)responseModel.awarded;
@@ -91,7 +91,7 @@
             return [documentsDirectoryPath URLByAppendingPathComponent:[response.suggestedFilename lastPathComponent]];
         } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
             NSData *fileData = nil;
-            JCAPPSuccessResponse *res = [[JCAPPSuccessResponse alloc] init];
+            APPSuccessResponse *res = [[APPSuccessResponse alloc] init];
             @try {
                 fileData = [NSData dataWithContentsOfURL:filePath];
                 if (fileData != nil) {
@@ -111,7 +111,7 @@
     }
 }
 
-+ (nullable JCAPPNetResponseModel *)jsonToModel:(id)responseObject requestTask:(NSURLSessionTask *)task {
++ (nullable APPNetResponseModel *)jsonToModel:(id)responseObject requestTask:(NSURLSessionTask *)task {
     NSString *jsonStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
 #if DEBUG
     NSLog(@"RequestURL = \n %@ \n Response = \n %@ \nEnd -------", task.currentRequest.URL.absoluteString, jsonStr);
@@ -120,7 +120,7 @@
         return nil;
     }
     
-    JCAPPNetResponseModel *responseModel = [JCAPPNetResponseModel modelWithJSON:jsonStr];
+    APPNetResponseModel *responseModel = [APPNetResponseModel modelWithJSON:jsonStr];
     if (responseModel.prize == -2) {
         responseModel.reqeustError = [[NSError alloc] initWithDomain:@"request.error" code:responseModel.prize userInfo:@{NSLocalizedFailureReasonErrorKey: responseModel.nobel}];
         // 登录失效.重新登录

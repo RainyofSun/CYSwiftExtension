@@ -1,12 +1,12 @@
 //
-//  JCAPPURLMacroHeader.h
+//  APPURLMacroHeader.h
 //  JoyCash
 //
 //  Created by Yu Chen  on 2025/2/19.
 //
 
-#ifndef JCAPPURLMacroHeader_h
-#define JCAPPURLMacroHeader_h
+#ifndef APPURLMacroHeader_h
+#define APPURLMacroHeader_h
 
 #import <UIKit/UIKit.h>
 #import "APPNetResponseModel.h"
@@ -32,4 +32,4 @@ static NSString * _Nonnull const APP_LOGIN_EXPIRED_NOTIFICATION = @"com.mx.notif
 /// 登录成功
 static NSString * _Nonnull const APP_LOGIN_SUCCESS_NOTIFICATION = @"com.mx.notification.name.login.success";
 
-#endif /* JCAPPURLMacroHeader_h */
+#endif /* APPURLMacroHeader_h */
