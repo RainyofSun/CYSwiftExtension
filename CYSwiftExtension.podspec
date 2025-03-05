@@ -9,6 +9,7 @@
 # https://www.jianshu.com/p/9a5ec24ff437
 # https://blog.csdn.net/qq_34534179/article/details/84639127
 # https://blog.csdn.net/weixin_34318272/article/details/88039959
+# https://www.jianshu.com/p/743bfd8f1d72
 
 Pod::Spec.new do |spec|
 
@@ -220,4 +221,5 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
+  spec.swift_version = '5.2'
 end

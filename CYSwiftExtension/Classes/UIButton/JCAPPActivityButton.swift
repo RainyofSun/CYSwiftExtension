@@ -27,7 +27,7 @@ extension JCAPPActivityButton: ActivityAnimationProtocol {
         self.setImage(nil, for: UIControl.State.normal)
         
         if self.activityIndicatorView == nil {
-            let activityView = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.white)
+            let activityView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.white)
             activityView.hidesWhenStopped = true
             self.addSubview(activityView)
             activityView.snp.makeConstraints { make in
