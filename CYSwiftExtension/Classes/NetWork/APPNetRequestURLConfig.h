@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)urlConfig;
 + (BOOL)reloadNetworkRequestDomainURL:(NSString *)url;
++ (void)clearDomainURLCache;
 
 - (BOOL)setNewNetworkRequestDomainURL:(NSString *)url;
 - (NSURL *)networkRequestURL;

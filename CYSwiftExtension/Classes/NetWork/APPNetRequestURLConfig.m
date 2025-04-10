@@ -34,6 +34,10 @@
     return [[APPNetRequestURLConfig urlConfig] setNewNetworkRequestDomainURL:url];
 }
 
++ (void)clearDomainURLCache {
+    [[APPNetRequestURLConfig urlConfig].usedDomainURLs removeAllObjects];
+}
+
 - (BOOL)setNewNetworkRequestDomainURL:(NSString *)url {
     if ([self.usedDomainURLs containsObject:url]) {
         return NO;

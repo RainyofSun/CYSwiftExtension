@@ -8,7 +8,7 @@ use_frameworks!
 def CommonPods
    pod 'MJRefresh', '3.7.5'
    pod 'YYKit', '1.0.9'
-   pod 'AFNetworking', '4.0.1'
+   pod 'AFNetworking', :git => 'https://github.com/crasowas/AFNetworking.git'
    pod 'Reachability', '3.2'
    pod 'SnapKit', '5.6.0'
    pod 'Toast', '4.1.1'
