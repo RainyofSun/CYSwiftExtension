@@ -118,7 +118,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'NetWork' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/NetWork/*.{h,m}'
-      spec.dependency 'AFNetworking', :git => 'https://github.com/crasowas/AFNetworking.git'
+      spec.dependency 'AFNetworking'
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "Toast", "4.1.1"
       spec.dependency 'CYSwiftExtension/String'
