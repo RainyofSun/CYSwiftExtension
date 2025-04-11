@@ -34,4 +34,8 @@
     });
 }
 
+- (BOOL)shouldPop {
+    return YES;
+}
+
 @end

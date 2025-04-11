@@ -9,6 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CurrentControllerShouldPopProtocol <NSObject>
+
+- (BOOL)shouldPop;
+
+@end
+
 @interface UIViewController (ViewControllerExtension)
 
 - (void)showSystemStyleSettingAlert:(NSString *)content okTitle:(NSString * _Nullable )ok cancelTitle:(NSString * _Nullable )cancel;
