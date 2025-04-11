@@ -13,7 +13,7 @@ import CoreTelephony
 public let APPLICATION_NET_CHANGE = "com.jc.notification.name.net.change"
 
 @objcMembers public class DeviceNetObserver: NSObject {
-    enum NetworkStatus {
+    public enum NetworkStatus {
         case NetworkStatus_WIFI
         case NetworkStatus_Cellular
         case NetworkStatus_LTE
@@ -22,7 +22,7 @@ public let APPLICATION_NET_CHANGE = "com.jc.notification.name.net.change"
     }
     
     //单例
-    static let shared = DeviceNetObserver()
+    public static let shared = DeviceNetObserver()
     private override init() {}
     
     private(set) var netState: NetworkStatus = .NetworkStatus_NoNet
