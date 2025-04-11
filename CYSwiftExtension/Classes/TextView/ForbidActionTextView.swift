@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ForbidActionTextView: UITextView {
+public class ForbidActionTextView: UITextView {
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -18,7 +18,7 @@ class ForbidActionTextView: UITextView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false
     }
 

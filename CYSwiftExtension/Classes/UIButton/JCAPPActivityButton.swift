@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol ActivityAnimationProtocol: UIControl {
+public protocol ActivityAnimationProtocol: UIControl {
     func startAnimation()
     func stopAnimation()
 }
 
-class JCAPPActivityButton: JCAPPGradientColorButton {
+public class JCAPPActivityButton: JCAPPGradientColorButton {
 
     private var activityIndicatorView: UIActivityIndicatorView?
     private var _btnTitle: String?
@@ -20,7 +20,7 @@ class JCAPPActivityButton: JCAPPGradientColorButton {
 }
 
 extension JCAPPActivityButton: ActivityAnimationProtocol {
-    func startAnimation() {
+    public func startAnimation() {
         _btnTitle = self.currentTitle
         self.setTitle("", for: UIControl.State.normal)
         _btnImg = self.currentImage
@@ -42,7 +42,7 @@ extension JCAPPActivityButton: ActivityAnimationProtocol {
         self.isEnabled = false
     }
     
-    func stopAnimation() {
+    public func stopAnimation() {
         if let _activityView = self.activityIndicatorView {
             UIView.animate(withDuration: 0.3) {
                 _activityView.alpha = 0

@@ -1,14 +1,14 @@
 //
-//  LJPeoplePickerDelegate.m
-//  LJContactManager
+//  APPPeoplePickerDelegate.m
+//  APPContactManager
 //
 //  Created by LeeJay on 2017/3/22.
 //  Copyright © 2017年 LeeJay. All rights reserved.
 //
 
-#import "LJPeoplePickerDelegate.h"
+#import "APPPeoplePickerDelegate.h"
 
-@implementation LJPeoplePickerDelegate
+@implementation APPPeoplePickerDelegate
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 

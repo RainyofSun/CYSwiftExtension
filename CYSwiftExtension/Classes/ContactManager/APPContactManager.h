@@ -1,6 +1,6 @@
 //
-//  LJAddressBookManager.h
-//  LJContactManager
+//  APPAddressBookManager.h
+//  APPContactManager
 //
 //  Created by LeeJay on 2017/3/22.
 //  Copyright © 2017年 LeeJay. All rights reserved.
@@ -8,21 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@class LJPerson, LJSectionPerson;
+@class APPPerson, APPSectionPerson;
 
 /**
  通讯录变更回调（未分组的通讯录）
  */
-typedef void (^LJContactChangeHandler) (void);
+typedef void (^APPContactChangeHandler) (void);
 
-@interface LJContactManager : NSObject
+@interface APPContactManager : NSObject
 
 + (instancetype)sharedInstance;
 
 /**
  通讯录变更回调
  */
-@property (nonatomic, copy) LJContactChangeHandler contactChangeHandler;
+@property (nonatomic, copy) APPContactChangeHandler contactChangeHandler;
 
 /**
  请求授权
@@ -61,13 +61,13 @@ typedef void (^LJContactChangeHandler) (void);
  
  @param completcion 回调
  */
-- (void)accessContactsComplection:(void (^)(BOOL succeed, NSArray <LJPerson *> *contacts))completcion;
+- (void)accessContactsComplection:(void (^)(BOOL succeed, NSArray <APPPerson *> *contacts))completcion;
 
 /**
  获取联系人列表（已分组的通讯录）
 
  @param completcion 回调
  */
-- (void)accessSectionContactsComplection:(void (^)(BOOL succeed, NSArray <LJSectionPerson *> *contacts, NSArray <NSString *> *keys))completcion;
+- (void)accessSectionContactsComplection:(void (^)(BOOL succeed, NSArray <APPSectionPerson *> *contacts, NSArray <NSString *> *keys))completcion;
 
 @end

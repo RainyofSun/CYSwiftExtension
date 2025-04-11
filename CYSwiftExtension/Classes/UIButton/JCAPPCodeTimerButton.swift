@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class JCAPPCodeTimerButton: UIControl {
+public class JCAPPCodeTimerButton: UIControl {
 
     private lazy var titleLab: UILabel = {
         let view = UIKit.UILabel(frame: CGRectZero)
@@ -40,7 +40,7 @@ class JCAPPCodeTimerButton: UIControl {
         }
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.bounds.size.height * 0.5
         self.clipsToBounds = true

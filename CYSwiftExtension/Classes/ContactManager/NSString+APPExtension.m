@@ -1,16 +1,16 @@
 //
-//  NSString+LJExtension.m
+//  NSString+APPExtension.m
 //  Demo
 //
 //  Created by LeeJay on 2018/7/5.
 //  Copyright © 2018年 LeeJay. All rights reserved.
 //
 
-#import "NSString+LJExtension.h"
+#import "NSString+APPExtension.h"
 
-@implementation NSString (LJExtension)
+@implementation NSString (APPExtension)
 
-+ (NSString *)lj_filterSpecialString:(NSString *)string
++ (NSString *)APP_filterSpecialString:(NSString *)string
 {
     if (string == nil)
     {
@@ -26,7 +26,7 @@
     return string;
 }
 
-+ (NSString *)lj_pinyinForString:(NSString *)string
++ (NSString *)APP_pinyinForString:(NSString *)string
 {
     if (string.length == 0)
     {

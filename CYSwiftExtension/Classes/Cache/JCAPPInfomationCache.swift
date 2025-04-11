@@ -7,9 +7,9 @@
 
 import UIKit
 
-class JCAPPInfomationCache: NSObject {
+public class JCAPPInfomationCache: NSObject {
     // MARK: 登录信息的本地化
-    class func loginInformationReadFormDiskCache() -> String? {
+    class public func loginInformationReadFormDiskCache() -> String? {
         if let _str = UserDefaults.standard.value(forKey: APPLICATION_SAVE_LOGIN_MODEL) as? String {
             return _str
         }
@@ -17,13 +17,13 @@ class JCAPPInfomationCache: NSObject {
         return ""
     }
     
-    class func loginInfomationSaveToDisk(_ loginInfo: String?) {
+    class public func loginInfomationSaveToDisk(_ loginInfo: String?) {
         UserDefaults.standard.set(loginInfo, forKey: APPLICATION_SAVE_LOGIN_MODEL)
         UserDefaults.standard.synchronize()
     }
     
     // MARK: 是否首次按照
-    class func applicationFirstInstall() -> Bool {
+    class public func applicationFirstInstall() -> Bool {
         if let _value = UserDefaults.standard.value(forKey: APPLICATION_FIRST_INSTALLATION) as? Bool {
             return _value
         }
@@ -31,13 +31,13 @@ class JCAPPInfomationCache: NSObject {
         return true
     }
     
-    class func saveApplicationInstallMark() {
+    class public func saveApplicationInstallMark() {
         UserDefaults.standard.set(false, forKey: APPLICATION_FIRST_INSTALLATION)
         UserDefaults.standard.synchronize()
     }
     
     // MARK: 今日是否已展示定位弹窗
-    class func todayShouldShowLocationAlert() -> Bool {
+    class public func todayShouldShowLocationAlert() -> Bool {
         let tempCalendar = Calendar.current
         let day_time = tempCalendar.component(Calendar.Component.day, from: Date())
         let record_time = UserDefaults.standard.value(forKey: APPLICATION_SHOW_LOCATION_ALERT_TODAY) as? Int

@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-protocol APPProtocolDelegate: AnyObject {
+public protocol APPProtocolDelegate: AnyObject {
     func gotoProtocol()
 }
 
-class ProtocolView: UIView {
+public class ProtocolView: UIView {
 
     weak open var protocolDelegate: APPProtocolDelegate?
     open var hasSelected: Bool {

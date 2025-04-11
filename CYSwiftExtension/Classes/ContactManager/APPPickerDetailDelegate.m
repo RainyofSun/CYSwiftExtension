@@ -1,14 +1,14 @@
 //
-//  LJPickerDetailDelegate.m
+//  APPPickerDetailDelegate.m
 //  Demo
 //
 //  Created by LeeJay on 2017/4/24.
 //  Copyright © 2017年 LeeJay. All rights reserved.
 //
 
-#import "LJPickerDetailDelegate.h"
+#import "APPPickerDetailDelegate.h"
 
-@implementation LJPickerDetailDelegate 
+@implementation APPPickerDetailDelegate 
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 

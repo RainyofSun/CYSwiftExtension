@@ -1,22 +1,22 @@
 //
-//  LJPerson.m
-//  LJContactManager
+//  APPPerson.m
+//  APPContactManager
 //
 //  Created by LeeJay on 2017/3/22.
 //  Copyright © 2017年 LeeJay. All rights reserved.
 //
 
-#import "LJPerson.h"
-#import "NSString+LJExtension.h"
+#import "APPPerson.h"
+#import "NSString+APPExtension.h"
 
-@implementation LJPerson
+@implementation APPPerson
 
 - (instancetype)initWithCNContact:(CNContact *)contact
 {
     self = [super init];
     if (self)
     {
-        self.contactType = contact.contactType == CNContactTypePerson ? LJContactTypePerson : LJContactTypeOrigination;
+        self.contactType = contact.contactType == CNContactTypePerson ? APPContactTypePerson : APPContactTypeOrigination;
         
         self.fullName = [CNContactFormatter stringFromContact:contact style:CNContactFormatterStyleFullName];
         self.familyName = contact.familyName;
@@ -78,7 +78,7 @@
             NSMutableArray *phones = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.phoneNumbers)
             {
-                LJPhone *phoneModel = [[LJPhone alloc] initWithLabeledValue:labeledValue];
+                APPPhone *phoneModel = [[APPPhone alloc] initWithLabeledValue:labeledValue];
                 [phones addObject:phoneModel];
             }
             self.phones = phones;
@@ -90,7 +90,7 @@
             NSMutableArray *emails = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.emailAddresses)
             {
-                LJEmail *emailModel = [[LJEmail alloc] initWithLabeledValue:labeledValue];
+                APPEmail *emailModel = [[APPEmail alloc] initWithLabeledValue:labeledValue];
                 [emails addObject:emailModel];
             }
             self.emails = emails;
@@ -102,14 +102,14 @@
             NSMutableArray *addresses = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.postalAddresses)
             {
-                LJAddress *addressModel = [[LJAddress alloc] initWithLabeledValue:labeledValue];
+                APPAddress *addressModel = [[APPAddress alloc] initWithLabeledValue:labeledValue];
                 [addresses addObject:addressModel];
             }
             self.addresses = addresses;
         }
         
         // 生日
-        LJBirthday *birthday = [[LJBirthday alloc] initWithCNContact:contact];
+        APPBirthday *birthday = [[APPBirthday alloc] initWithCNContact:contact];
         self.birthday = birthday;
         
         if ([contact isKeyAvailable:CNContactInstantMessageAddressesKey])
@@ -118,7 +118,7 @@
             NSMutableArray *messages = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.instantMessageAddresses)
             {
-                LJMessage *messageModel = [[LJMessage alloc] initWithLabeledValue:labeledValue];
+                APPMessage *messageModel = [[APPMessage alloc] initWithLabeledValue:labeledValue];
                 [messages addObject:messageModel];
             }
             self.messages = messages;
@@ -130,7 +130,7 @@
             NSMutableArray *socials = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.socialProfiles)
             {
-                LJSocialProfile *socialModel = [[LJSocialProfile alloc] initWithLabeledValue:labeledValue];
+                APPSocialProfile *socialModel = [[APPSocialProfile alloc] initWithLabeledValue:labeledValue];
                 [socials addObject:socialModel];
             }
             self.socials = socials;
@@ -142,7 +142,7 @@
             NSMutableArray *relations = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.contactRelations)
             {
-                LJContactRelation *relationModel = [[LJContactRelation alloc] initWithLabeledValue:labeledValue];
+                APPContactRelation *relationModel = [[APPContactRelation alloc] initWithLabeledValue:labeledValue];
                 [relations addObject:relationModel];
             }
             self.relations = relations;
@@ -154,7 +154,7 @@
             NSMutableArray *urlAddresses = [NSMutableArray array];
             for (CNLabeledValue *labeledValue in contact.urlAddresses)
             {
-                LJUrlAddress *urlModel = [[LJUrlAddress alloc] initWithLabeledValue:labeledValue];
+                APPUrlAddress *urlModel = [[APPUrlAddress alloc] initWithLabeledValue:labeledValue];
                 [urlAddresses addObject:urlModel];
             }
             self.urls = urlAddresses;
@@ -169,7 +169,7 @@
     if (self)
     {
         CFNumberRef type = ABRecordCopyValue(record, kABPersonKindProperty);
-        self.contactType = type == kABPersonKindPerson ? LJContactTypePerson : LJContactTypeOrigination;
+        self.contactType = type == kABPersonKindPerson ? APPContactTypePerson : APPContactTypeOrigination;
         CFRelease(type);
         NSString *fullName = CFBridgingRelease(ABRecordCopyCompositeName(record));
         NSString *firstName = CFBridgingRelease(ABRecordCopyValue(record, kABPersonFirstNameProperty));
@@ -222,7 +222,7 @@
         NSMutableArray *phones = [NSMutableArray array];
         for (CFIndex i = 0; i < phoneCount; i++)
         {
-            LJPhone *phoneModel = [[LJPhone alloc] initWithMultiValue:multiPhones index:i];
+            APPPhone *phoneModel = [[APPPhone alloc] initWithMultiValue:multiPhones index:i];
             [phones addObject:phoneModel];
         }
         CFRelease(multiPhones);
@@ -234,7 +234,7 @@
         NSMutableArray *emails = [NSMutableArray array];
         for (CFIndex i = 0; i < emailCount; i++)
         {
-            LJEmail *emailModel = [[LJEmail alloc] initWithMultiValue:multiEmails index:i];
+            APPEmail *emailModel = [[APPEmail alloc] initWithMultiValue:multiEmails index:i];
             [emails addObject:emailModel];
         }
         CFRelease(multiEmails);
@@ -246,14 +246,14 @@
         NSMutableArray *addresses = [NSMutableArray array];
         for (CFIndex i = 0; i < addressCount; i++)
         {
-            LJAddress *addressModel = [[LJAddress alloc] initWithMultiValue:multiAddresses index:i];
+            APPAddress *addressModel = [[APPAddress alloc] initWithMultiValue:multiAddresses index:i];
             [addresses addObject:addressModel];
         }
         CFRelease(multiAddresses);
         self.addresses = addresses;
         
         // 生日
-        LJBirthday *birthday = [[LJBirthday alloc] initWithRecord:record];
+        APPBirthday *birthday = [[APPBirthday alloc] initWithRecord:record];
         self.birthday = birthday;
         
         // 即时通讯
@@ -262,7 +262,7 @@
         NSMutableArray *messages = [NSMutableArray array];
         for (CFIndex i = 0; i < messageCount; i++)
         {
-            LJMessage *messageModel = [[LJMessage alloc] initWithMultiValue:multiMessages index:i];
+            APPMessage *messageModel = [[APPMessage alloc] initWithMultiValue:multiMessages index:i];
             [messages addObject:messageModel];
         }
         CFRelease(multiMessages);
@@ -274,7 +274,7 @@
         NSMutableArray *socials = [NSMutableArray array];
         for (CFIndex i = 0; i < socialCount; i++)
         {
-            LJSocialProfile *socialModel = [[LJSocialProfile alloc] initWithMultiValue:multiSocials index:i];
+            APPSocialProfile *socialModel = [[APPSocialProfile alloc] initWithMultiValue:multiSocials index:i];
             [socials addObject:socialModel];
         }
         CFRelease(multiSocials);
@@ -286,7 +286,7 @@
         NSMutableArray *relations = [NSMutableArray array];
         for (CFIndex i = 0; i < relationCount; i++)
         {
-            LJContactRelation *relationModel = [[LJContactRelation alloc] initWithMultiValue:multiRelations index:i];
+            APPContactRelation *relationModel = [[APPContactRelation alloc] initWithMultiValue:multiRelations index:i];
             [relations addObject:relationModel];
         }
         CFRelease(multiRelations);
@@ -298,7 +298,7 @@
         NSMutableArray *urls = [NSMutableArray array];
         for (CFIndex i = 0; i < urlCount; i ++)
         {
-            LJUrlAddress *urlModel = [[LJUrlAddress alloc] initWithMultiValue:multiURLs index:i];
+            APPUrlAddress *urlModel = [[APPUrlAddress alloc] initWithMultiValue:multiURLs index:i];
             [urls addObject:urlModel];
         }
         CFRelease(multiURLs);
@@ -309,7 +309,7 @@
 
 @end
 
-@implementation LJPhone
+@implementation APPPhone
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -318,7 +318,7 @@
     {
         CNPhoneNumber *phoneValue = labeledValue.value;
         NSString *phoneNumber = phoneValue.stringValue;
-        self.phone = [NSString lj_filterSpecialString:phoneNumber];
+        self.phone = [NSString APP_filterSpecialString:phoneNumber];
         self.label = [CNLabeledValue localizedStringForLabel:labeledValue.label];
     }
     return self;
@@ -339,7 +339,7 @@
         }
         self.label = localized;
         NSString *phoneNumber = CFBridgingRelease(ABMultiValueCopyValueAtIndex(multiValue, index));
-        self.phone = [NSString lj_filterSpecialString:phoneNumber];
+        self.phone = [NSString APP_filterSpecialString:phoneNumber];
     }
     return self;
 }
@@ -357,7 +357,7 @@
 
 @end
 
-@implementation LJEmail
+@implementation APPEmail
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -392,7 +392,7 @@
 
 @end
 
-@implementation LJAddress
+@implementation APPAddress
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -436,7 +436,7 @@
 
 @end
 
-@implementation LJBirthday
+@implementation APPBirthday
 
 - (instancetype)initWithCNContact:(CNContact *)contact
 {
@@ -479,7 +479,7 @@
 
 @end
 
-@implementation LJMessage
+@implementation APPMessage
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -507,7 +507,7 @@
 
 @end
 
-@implementation LJSocialProfile
+@implementation APPSocialProfile
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -537,7 +537,7 @@
 
 @end
 
-@implementation LJUrlAddress
+@implementation APPUrlAddress
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -566,7 +566,7 @@
 
 @end
 
-@implementation LJContactRelation
+@implementation APPContactRelation
 
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
@@ -596,7 +596,7 @@
 
 @end
 
-@implementation LJSectionPerson
+@implementation APPSectionPerson
 
 
 @end

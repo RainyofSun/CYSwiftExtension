@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.0.6"
+  spec.version      = "1.1.0"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -118,7 +118,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'NetWork' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/NetWork/*.{h,m}'
-      spec.dependency 'AFNetworking'
+      spec.dependency {'AFNetworking', :git => 'https://github.com/crasowas/AFNetworking.git'}
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "Toast", "4.1.1"
       spec.dependency 'CYSwiftExtension/String'
@@ -141,32 +141,32 @@ Pod::Spec.new do |spec|
   # Swift 文件选择模式
   # spec.ios.source_files  = "CYSwiftExtension/Classes/*"
   spec.subspec 'ScrollView' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/ScrollView/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/ScrollView/*.swift'
       spec.dependency "MJRefresh", "3.7.5"
   end
 
   spec.subspec 'GradientView' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/GradientView/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/GradientView/*.swift'
   end
 
   spec.subspec 'TextView' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/TextView/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/TextView/*.swift'
   end
 
   spec.subspec 'UITextFiled' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/UITextFiled/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/UITextFiled/*.swift'
   end
 
   spec.subspec 'MarqueeView' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/MarqueeView/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/MarqueeView/*.swift'
   end
 
   spec.subspec 'Cache' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/Cache/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Cache/*.swift'
   end
 
   spec.subspec 'UIButton' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/UIButton/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/UIButton/*.swift'
       spec.dependency "SnapKit", "5.6.0"
       spec.dependency 'CYSwiftExtension/GradientView'
   end

@@ -12,7 +12,7 @@ import CoreTelephony
 // 网络状态通知
 public let APPLICATION_NET_CHANGE = "com.jc.notification.name.net.change"
 
-@objcMembers class DeviceNetObserver: NSObject {
+@objcMembers public class DeviceNetObserver: NSObject {
     enum NetworkStatus {
         case NetworkStatus_WIFI
         case NetworkStatus_Cellular

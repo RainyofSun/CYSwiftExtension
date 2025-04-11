@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JCAPPGradientColorButton: UIButton {
+public class JCAPPGradientColorButton: UIButton {
 
     private lazy var bgGradientView: GradientColorView = {
         let view = GradientColorView(frame: CGRectZero)

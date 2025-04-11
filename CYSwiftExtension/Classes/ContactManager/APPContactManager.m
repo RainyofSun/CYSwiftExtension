@@ -1,37 +1,37 @@
 //
-//  LJAddressBookManager.m
-//  LJContactManager
+//  APPAddressBookManager.m
+//  APPContactManager
 //
 //  Created by LeeJay on 2017/3/22.
 //  Copyright © 2017年 LeeJay. All rights reserved.
 //
 
-#import "LJContactManager.h"
+#import "APPContactManager.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
-#import "LJPerson.h"
-#import "LJPeoplePickerDelegate.h"
+#import "APPPerson.h"
+#import "APPPeoplePickerDelegate.h"
 #import <Contacts/Contacts.h>
 #import <ContactsUI/ContactsUI.h>
-#import "LJPickerDetailDelegate.h"
-#import "NSString+LJExtension.h"
+#import "APPPickerDetailDelegate.h"
+#import "NSString+APPExtension.h"
 
 #define IOS9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 
-@interface LJContactManager () <ABNewPersonViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate, CNContactViewControllerDelegate, CNContactPickerDelegate>
+@interface APPContactManager () <ABNewPersonViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate, CNContactViewControllerDelegate, CNContactPickerDelegate>
 
 @property (nonatomic, copy) void (^handler) (NSString *, NSString *);
 @property (nonatomic, assign) BOOL isAdd;
 @property (nonatomic, copy) NSArray *keys;
-@property (nonatomic, strong) LJPeoplePickerDelegate *pickerDelegate;
-@property (nonatomic, strong) LJPickerDetailDelegate *pickerDetailDelegate;
+@property (nonatomic, strong) APPPeoplePickerDelegate *pickerDelegate;
+@property (nonatomic, strong) APPPickerDetailDelegate *pickerDetailDelegate;
 @property (nonatomic) ABAddressBookRef addressBook;
 @property (nonatomic, strong) CNContactStore *contactStore;
 @property (nonatomic) dispatch_queue_t queue;
 
 @end
 
-@implementation LJContactManager
+@implementation APPContactManager
 
 - (instancetype)init
 {
@@ -94,23 +94,23 @@
     return _keys;
 }
 
-- (LJPeoplePickerDelegate *)pickerDelegate
+- (APPPeoplePickerDelegate *)pickerDelegate
 {
     if (!_pickerDelegate)
     {
-        _pickerDelegate = [LJPeoplePickerDelegate new];
+        _pickerDelegate = [APPPeoplePickerDelegate new];
     }
     return _pickerDelegate;
 }
 
-- (LJPickerDetailDelegate *)pickerDetailDelegate
+- (APPPickerDetailDelegate *)pickerDetailDelegate
 {
     if (!_pickerDetailDelegate)
     {
-        _pickerDetailDelegate = [LJPickerDetailDelegate new];
+        _pickerDetailDelegate = [APPPickerDetailDelegate new];
         __weak typeof(self) weakSelf = self;
         _pickerDetailDelegate.handler = ^(NSString *name, NSString *phoneNum) {
-            NSString *newPhoneNum = [NSString lj_filterSpecialString:phoneNum];
+            NSString *newPhoneNum = [NSString APP_filterSpecialString:phoneNum];
             weakSelf.handler(name, newPhoneNum);
         };
     }
@@ -167,7 +167,7 @@
     [self _presentFromController:controller];
 }
 
-- (void)accessContactsComplection:(void (^)(BOOL, NSArray<LJPerson *> *))completcion
+- (void)accessContactsComplection:(void (^)(BOOL, NSArray<APPPerson *> *))completcion
 {
     [self requestAddressBookAuthorization:^(BOOL authorization) {
         
@@ -204,7 +204,7 @@
     }];
 }
 
-- (void)accessSectionContactsComplection:(void (^)(BOOL, NSArray<LJSectionPerson *> *, NSArray<NSString *> *))completcion
+- (void)accessSectionContactsComplection:(void (^)(BOOL, NSArray<APPSectionPerson *> *, NSArray<NSString *> *))completcion
 {
     [self requestAddressBookAuthorization:^(BOOL authorization) {
         
@@ -421,7 +421,7 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
         for (int i = 0; i < count; i++)
         {
             ABRecordRef record = CFArrayGetValueAtIndex(allPeople, i);
-            LJPerson *personModel = [[LJPerson alloc] initWithRecord:record];
+            APPPerson *personModel = [[APPPerson alloc] initWithRecord:record];
             [datas addObject:personModel];
         }
         
@@ -466,7 +466,7 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
         CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:self.keys];
         [weakSelf.contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
             
-            LJPerson *person = [[LJPerson alloc] initWithCNContact:contact];
+            APPPerson *person = [[APPPerson alloc] initWithCNContact:contact];
             [datas addObject:person];
             
         }];
@@ -505,7 +505,7 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    for (LJPerson *person in datas)
+    for (APPPerson *person in datas)
     {
         // 拼音首字母
         NSString *firstLetter = nil;
@@ -516,7 +516,7 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
         }
         else
         {
-            NSString *pinyinString = [NSString lj_pinyinForString:person.fullName];
+            NSString *pinyinString = [NSString APP_pinyinForString:person.fullName];
             person.pinyin = pinyinString;
             NSString *upperStr = [[pinyinString substringToIndex:1] uppercaseString];
             NSString *regex = @"^[A-Z]$";
@@ -547,11 +547,11 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
     
     [keys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        LJSectionPerson *person = [LJSectionPerson new];
+        APPSectionPerson *person = [APPSectionPerson new];
         person.key = key;
         
         // 组内按照拼音排序
-        NSArray *personsArr = [dict[key] sortedArrayUsingComparator:^NSComparisonResult(LJPerson *person1, LJPerson *person2) {
+        NSArray *personsArr = [dict[key] sortedArrayUsingComparator:^NSComparisonResult(APPPerson *person1, APPPerson *person2) {
             
             NSComparisonResult result = [person1.pinyin compare:person2.pinyin];
             return result;
@@ -570,17 +570,17 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
 
 void _addressBookChange(ABAddressBookRef addressBook, CFDictionaryRef info, void *context)
 {
-    if ([LJContactManager sharedInstance].contactChangeHandler)
+    if ([APPContactManager sharedInstance].contactChangeHandler)
     {
-        [LJContactManager sharedInstance].contactChangeHandler();
+        [APPContactManager sharedInstance].contactChangeHandler();
     }
 }
 
 - (void)_contactStoreDidChange
 {
-    if ([LJContactManager sharedInstance].contactChangeHandler)
+    if ([APPContactManager sharedInstance].contactChangeHandler)
     {
-        [LJContactManager sharedInstance].contactChangeHandler();
+        [APPContactManager sharedInstance].contactChangeHandler();
     }
 }
 

@@ -15,7 +15,7 @@ import UIKit
 /// - ttb: top -> bottom
 /// - btt: bottom -> top
 /// - reverse: right -> left -> right ...
-enum GCMarqueeDirectionType: Int {
+public enum GCMarqueeDirectionType: Int {
    case rtl
    case ltr
    case ttb
@@ -23,7 +23,7 @@ enum GCMarqueeDirectionType: Int {
    case reverse
 }
 
-struct GCMarqueeModel {
+public struct GCMarqueeModel {
     
     var titleFont: CGFloat = 13.0;
     var titleColor: UIColor = .black
@@ -56,7 +56,7 @@ struct GCMarqueeModel {
     
 }
 
-class GCMarqueeView: UIView {
+public class GCMarqueeView: UIView {
     
     typealias tapBlock = (GCMarqueeModel?) -> ()
     var block: tapBlock = {_ in }
@@ -143,7 +143,7 @@ class GCMarqueeView: UIView {
         startRunning()
     }
     
-    func startRunning() {
+    public func startRunning() {
         stopRunning()
         dispalyLink = CADisplayLink.init(target: self, selector: #selector(marqueeRunning))
         if #available(iOS 10.0, *) {
@@ -154,7 +154,7 @@ class GCMarqueeView: UIView {
         dispalyLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
-    func stopRunning() {
+    public func stopRunning() {
         dispalyLink?.invalidate()
         dispalyLink = nil
     }

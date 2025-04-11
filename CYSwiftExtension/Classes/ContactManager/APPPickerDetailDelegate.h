@@ -1,5 +1,5 @@
 //
-//  LJPickerDetailDelegate.h
+//  APPPickerDetailDelegate.h
 //  Demo
 //
 //  Created by LeeJay on 2017/4/24.
@@ -10,7 +10,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <ContactsUI/ContactsUI.h>
 
-@interface LJPickerDetailDelegate : NSObject <ABPeoplePickerNavigationControllerDelegate,CNContactPickerDelegate>
+@interface APPPickerDetailDelegate : NSObject <ABPeoplePickerNavigationControllerDelegate,CNContactPickerDelegate>
 
 @property (nonatomic, copy) void (^handler) (NSString *name, NSString *phoneNum);
 

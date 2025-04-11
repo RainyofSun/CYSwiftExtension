@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum GradientDirectionStyle: Int {
+public enum GradientDirectionStyle: Int {
     /// 从上到下
     case topToBottom = 0
     /// 从左到右
@@ -18,11 +18,11 @@ enum GradientDirectionStyle: Int {
     case leftTopToRightBottom
 }
 
-class GradientColorView: UIView {
+public class GradientColorView: UIView {
     
     open var colors: [UIColor]?
     
-    override class var layerClass: AnyClass {
+    public override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     

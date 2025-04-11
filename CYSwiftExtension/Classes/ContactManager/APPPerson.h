@@ -1,6 +1,6 @@
 //
-//  LJPerson.h
-//  LJContactManager
+//  APPPerson.h
+//  APPContactManager
 //
 //  Created by LeeJay on 2017/3/22.
 //  Copyright © 2017年 LeeJay. All rights reserved.
@@ -10,20 +10,20 @@
 #import <AddressBook/AddressBook.h>
 #import <Contacts/Contacts.h>
 
-@class LJPhone, LJEmail, LJAddress, LJBirthday, LJMessage, LJSocialProfile, LJContactRelation, LJUrlAddress;
+@class APPPhone, APPEmail, APPAddress, APPBirthday, APPMessage, APPSocialProfile, APPContactRelation, APPUrlAddress;
 
-typedef NS_ENUM(NSUInteger, LJContactType)
+typedef NS_ENUM(NSUInteger, APPContactType)
 {
-    LJContactTypePerson = 0,
-    LJContactTypeOrigination,
+    APPContactTypePerson = 0,
+    APPContactTypeOrigination,
 };
 
-@interface LJPerson : NSObject
+@interface APPPerson : NSObject
 
 /**
  联系人类型
  */
-@property (nonatomic) LJContactType contactType;
+@property (nonatomic) APPContactType contactType;
 
 /**
  姓名
@@ -133,42 +133,42 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 /**
  电话号码数组
  */
-@property (nonatomic, copy) NSArray <LJPhone *> *phones;
+@property (nonatomic, copy) NSArray <APPPhone *> *phones;
 
 /**
  邮箱数组
  */
-@property (nonatomic, copy) NSArray <LJEmail *> *emails;
+@property (nonatomic, copy) NSArray <APPEmail *> *emails;
 
 /**
  地址数组
  */
-@property (nonatomic, copy) NSArray <LJAddress *> *addresses;
+@property (nonatomic, copy) NSArray <APPAddress *> *addresses;
 
 /**
  生日对象
  */
-@property (nonatomic, strong) LJBirthday *birthday;
+@property (nonatomic, strong) APPBirthday *birthday;
 
 /**
  即时通讯数组
  */
-@property (nonatomic, copy) NSArray <LJMessage *> *messages;
+@property (nonatomic, copy) NSArray <APPMessage *> *messages;
 
 /**
  社交数组
  */
-@property (nonatomic, copy) NSArray <LJSocialProfile *> *socials;
+@property (nonatomic, copy) NSArray <APPSocialProfile *> *socials;
 
 /**
  关联人数组
  */
-@property (nonatomic, copy) NSArray <LJContactRelation *> *relations;
+@property (nonatomic, copy) NSArray <APPContactRelation *> *relations;
 
 /**
  url数组
  */
-@property (nonatomic, copy) NSArray <LJUrlAddress *> *urls;
+@property (nonatomic, copy) NSArray <APPUrlAddress *> *urls;
 
 /**
  便利构造 （Contacts）
@@ -189,7 +189,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 电话
-@interface LJPhone : NSObject
+@interface APPPhone : NSObject
 
 /**
  电话
@@ -221,7 +221,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 电子邮件
-@interface LJEmail : NSObject
+@interface APPEmail : NSObject
 
 /**
  邮箱
@@ -253,7 +253,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 地址
-@interface LJAddress : NSObject
+@interface APPAddress : NSObject
 
 /**
  标签
@@ -315,7 +315,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 生日
-@interface LJBirthday : NSObject
+@interface APPBirthday : NSObject
 
 /**
  生日日期
@@ -366,7 +366,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 即时通讯
-@interface LJMessage : NSObject
+@interface APPMessage : NSObject
 
 /**
  即时通讯名字（QQ）
@@ -398,7 +398,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 社交
-@interface LJSocialProfile : NSObject
+@interface APPSocialProfile : NSObject
 
 /**
  社交名字（Facebook）
@@ -435,7 +435,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// URL
-@interface LJUrlAddress : NSObject
+@interface APPUrlAddress : NSObject
 
 /**
  标签
@@ -467,7 +467,7 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 关联人
-@interface LJContactRelation : NSObject
+@interface APPContactRelation : NSObject
 
 /**
  标签（父亲，朋友等）
@@ -499,10 +499,10 @@ typedef NS_ENUM(NSUInteger, LJContactType)
 @end
 
 /// 排序分组模型
-@interface LJSectionPerson : NSObject
+@interface APPSectionPerson : NSObject
 
 @property (nonatomic, copy) NSString *key;
 
-@property (nonatomic, copy) NSArray <LJPerson *> *persons;
+@property (nonatomic, copy) NSArray <APPPerson *> *persons;
 
 @end
