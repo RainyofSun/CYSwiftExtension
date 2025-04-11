@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.1.1"
+  spec.version      = "1.1.2"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -118,7 +118,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'NetWork' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/NetWork/*.{h,m}'
-      spec.dependency [.package(url: "https://github.com/crasowas/AFNetworking.git", .branch("main"))]
+      spec.dependency "AFNetworking"
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "Toast", "4.1.1"
       spec.dependency 'CYSwiftExtension/String'
