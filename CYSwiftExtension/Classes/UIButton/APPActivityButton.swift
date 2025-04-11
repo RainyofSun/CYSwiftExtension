@@ -1,5 +1,5 @@
 //
-//  JCAPPActivityButton.swift
+//  APPActivityButton.swift
 //  JoyCash
 //
 //  Created by Yu Chen  on 2025/2/19.
@@ -12,14 +12,14 @@ public protocol ActivityAnimationProtocol: UIControl {
     func stopAnimation()
 }
 
-public class JCAPPActivityButton: JCAPPGradientColorButton {
+public class APPActivityButton: APPGradientColorButton {
 
     private var activityIndicatorView: UIActivityIndicatorView?
     private var _btnTitle: String?
     private var _btnImg: UIImage?
 }
 
-extension JCAPPActivityButton: ActivityAnimationProtocol {
+extension APPActivityButton: ActivityAnimationProtocol {
     public func startAnimation() {
         _btnTitle = self.currentTitle
         self.setTitle("", for: UIControl.State.normal)

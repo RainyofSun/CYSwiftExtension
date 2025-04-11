@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GCMarqueeItem: UIView {
+public class GCMarqueeItem: UIView {
     
     private let padding: CGFloat = 18.0;
     private let icon_title_margin: CGFloat = 10.0;
@@ -22,7 +22,7 @@ class GCMarqueeItem: UIView {
     typealias tapBlock = (GCMarqueeModel?) -> ()
     var block: tapBlock = {_ in }
 
-    init(frame: CGRect, model: GCMarqueeModel) {
+    public init(frame: CGRect, model: GCMarqueeModel) {
         self.model = model
         super.init(frame: frame)
         self.layer.masksToBounds = true
@@ -31,7 +31,7 @@ class GCMarqueeItem: UIView {
         initUI()
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
@@ -39,7 +39,7 @@ class GCMarqueeItem: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         if let _img = imageV {
             _img.frame = CGRect(x: padding, y: ((model?.itemHeight ?? defaultHeight) - icon_height) / 2, width: icon_width, height: icon_height)
             titleLabel!.frame = CGRect(x: padding + icon_width + icon_title_margin, y: ((model?.itemHeight ?? defaultHeight) - 15) / 2, width: model?.itemWidth ?? defaultHeight - padding * 2 - icon_width - icon_title_margin, height: 15)

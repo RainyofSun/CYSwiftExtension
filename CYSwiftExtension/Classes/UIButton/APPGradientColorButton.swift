@@ -1,5 +1,5 @@
 //
-//  JCAPPGradientColorButton.swift
+//  APPGradientColorButton.swift
 //  JoyCash
 //
 //  Created by Yu Chen  on 2025/2/19.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class JCAPPGradientColorButton: UIButton {
+public class APPGradientColorButton: UIButton {
 
     private lazy var bgGradientView: GradientColorView = {
         let view = GradientColorView(frame: CGRectZero)
@@ -15,7 +15,7 @@ public class JCAPPGradientColorButton: UIButton {
         return view
     }()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.bgGradientView)
         self.bgGradientView.snp.makeConstraints { make in

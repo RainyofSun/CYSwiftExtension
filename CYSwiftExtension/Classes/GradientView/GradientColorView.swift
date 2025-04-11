@@ -26,7 +26,7 @@ public class GradientColorView: UIView {
         return CAGradientLayer.self
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = false
     }

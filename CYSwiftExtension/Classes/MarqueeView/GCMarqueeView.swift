@@ -49,7 +49,7 @@ public struct GCMarqueeModel {
     }
     var itemHeight: CGFloat
     
-    init(title: String) {
+    public init(title: String) {
         self.title = title
         itemHeight = defaultHeight
     }
@@ -75,7 +75,7 @@ public class GCMarqueeView: UIView {
 
     }
     
-    init(frame: CGRect , type: GCMarqueeDirectionType) {
+    public init(frame: CGRect , type: GCMarqueeDirectionType) {
         self.type = type
         super.init(frame: frame)
         self.clipsToBounds = true

@@ -29,7 +29,7 @@ public class ProtocolView: UIView {
     
     private let APP_PADDING_UNIT: CGFloat = 4
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.agreeBtn.addTarget(self, action: #selector(clickAgreeButton(sender: )), for: UIControl.Event.touchUpInside)

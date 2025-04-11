@@ -1,5 +1,5 @@
 //
-//  JCAPPCodeTimerButton.swift
+//  APPCodeTimerButton.swift
 //  JoyCash
 //
 //  Created by Yu Chen  on 2025/2/19.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-public class JCAPPCodeTimerButton: UIControl {
+public class APPCodeTimerButton: UIControl {
 
     private lazy var titleLab: UILabel = {
         let view = UIKit.UILabel(frame: CGRectZero)
@@ -25,7 +25,7 @@ public class JCAPPCodeTimerButton: UIControl {
     private let APP_PADDING_UNIT: CGFloat = 4
     private var _title_text: String?
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.initData()
@@ -73,7 +73,7 @@ public class JCAPPCodeTimerButton: UIControl {
     }
 }
 
-private extension JCAPPCodeTimerButton {
+private extension APPCodeTimerButton {
     func initData() {
 #if DEBUG
         time_count = 5
@@ -83,7 +83,7 @@ private extension JCAPPCodeTimerButton {
     }
 }
 
-@objc private extension JCAPPCodeTimerButton {
+@objc private extension APPCodeTimerButton {
     func timerCall(sender: Timer) {
         DispatchQueue.main.async {
             if self.time_count <= .zero {
