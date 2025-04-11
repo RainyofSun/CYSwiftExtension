@@ -25,10 +25,12 @@ public enum GCMarqueeDirectionType: Int {
 
 public struct GCMarqueeModel {
     
-    var titleFont: CGFloat = 13.0;
-    var titleColor: UIColor = .black
-    var bulletBackgroundColor: UIColor = UIColor.orange
-    var bulletIcon: String?
+    public var titleFont: CGFloat = 13.0;
+    public var titleColor: UIColor = .black
+    public var bulletBackgroundColor: UIColor = UIColor.orange
+    public var bulletIcon: String?
+    public var itemHeight: CGFloat
+    
     // 左右边距
     fileprivate static let padding: CGFloat = 16.0;
     fileprivate static let icon_title_margin: CGFloat = 10.0;
@@ -47,7 +49,6 @@ public struct GCMarqueeModel {
             }
         }
     }
-    var itemHeight: CGFloat
     
     public init(title: String) {
         self.title = title
@@ -58,22 +59,20 @@ public struct GCMarqueeModel {
 
 public class GCMarqueeView: UIView {
     
-    typealias tapBlock = (GCMarqueeModel?) -> ()
-    var block: tapBlock = {_ in }
-    
-    private let framesPerSecond = 30
+    public typealias tapBlock = (GCMarqueeModel?) -> ()
+    public var block: tapBlock = {_ in }
     public var pointsPerFrame: CGFloat = 1//default is 1, you can set it what you want.
-    private var isReverse = false
-    var type: GCMarqueeDirectionType
-    private var scrollView: UIScrollView!
-    private var dispalyLink: CADisplayLink?
-    var items: Array<GCMarqueeModel> = [] {
-        
+    public var type: GCMarqueeDirectionType
+    public var items: Array<GCMarqueeModel> = [] {
         didSet {
             configScrollView()
         }
-
     }
+    
+    private let framesPerSecond = 30
+    private var isReverse = false
+    private var scrollView: UIScrollView!
+    private var dispalyLink: CADisplayLink?
     
     public init(frame: CGRect , type: GCMarqueeDirectionType) {
         self.type = type

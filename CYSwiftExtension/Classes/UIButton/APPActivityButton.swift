@@ -12,14 +12,12 @@ public protocol ActivityAnimationProtocol: UIControl {
     func stopAnimation()
 }
 
-public class APPActivityButton: APPGradientColorButton {
+public class APPActivityButton: APPGradientColorButton, ActivityAnimationProtocol {
 
     private var activityIndicatorView: UIActivityIndicatorView?
     private var _btnTitle: String?
     private var _btnImg: UIImage?
-}
 
-extension APPActivityButton: ActivityAnimationProtocol {
     public func startAnimation() {
         _btnTitle = self.currentTitle
         self.setTitle("", for: UIControl.State.normal)
