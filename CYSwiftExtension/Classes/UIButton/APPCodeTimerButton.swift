@@ -54,9 +54,10 @@ public class APPCodeTimerButton: UIControl {
         print("------ deinit -------")
     }
     
-    public func setTimerButtonTitle(_ title: String? = "Get Code") {
+    public func setTimerButtonTitle(_ title: String? = "Get Code", titleColor: UIColor = .white) {
         self.titleLab.text = title
         self._title_text = title
+        self.titleLab.textColor = titleColor
     }
     
     public func start() {
