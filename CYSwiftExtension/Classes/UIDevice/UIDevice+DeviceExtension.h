@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getIPAddress;
 + (NSDictionary *)getAppDiskSize;
 + (NSString *)getFreeMemory;
++ (BOOL)getProxyStatus:(NSString *)url;
++ (BOOL)isVPNEnabled;
 + (CGFloat)app_safeDistanceTop;
 + (CGFloat)app_safeDistanceBottom;
 + (CGFloat)app_statusBarAndSafeAreaHeight;

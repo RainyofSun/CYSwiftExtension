@@ -1,5 +1,5 @@
 //
-//  JCAPPInfomationCache.swift
+//  APPInfomationCache.swift
 //  JoyCash
 //
 //  Created by Yu Chen  on 2025/2/19.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class JCAPPInfomationCache: NSObject {
+public class APPInfomationCache: NSObject {
     // MARK: 登录信息的本地化
     class public func loginInformationReadFormDiskCache() -> String? {
         if let _str = UserDefaults.standard.value(forKey: APPLICATION_SAVE_LOGIN_MODEL) as? String {

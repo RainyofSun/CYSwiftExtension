@@ -18,6 +18,7 @@
 #import <sys/mount.h>
 #import <sys/statvfs.h>
 #import <mach/mach.h>
+#import <NetworkExtension/NetworkExtension.h>
 
 #pragma mark - idfv key
 #define VC_APP_IDFV_KEY    @"VC_APP_IDFV_KEY"
@@ -283,6 +284,34 @@
     }
     long long availableMemorySize = ((vm_page_size * vmStats.free_count + vm_page_size * vmStats.inactive_count));
     return [NSString stringWithFormat:@"%lld", availableMemorySize];
+}
+
++ (BOOL)getProxyStatus:(NSString *)url {
+    NSDictionary *proxySettings = (__bridge NSDictionary *)CFNetworkCopySystemProxySettings();
+    NSArray *proxies = (__bridge NSArray *)CFNetworkCopyProxiesForURL((__bridge CFURLRef)([NSURL URLWithString:url]), (__bridge CFDictionaryRef _Nonnull)(proxySettings));
+    NSDictionary *settings = [proxies objectAtIndex:0];
+    NSString *proxyType = [settings objectForKey:(NSString *)kCFProxyTypeKey];
+    if ([proxyType isEqualToString:@"kCFProxyTypeNone"]) {
+        return NO; // 没有设置代理
+    } else {
+        return YES; // 设置了代理
+    }
+}
+
++ (BOOL)isVPNEnabled {
+//    /*! @const NEVPNStatusInvalid The VPN is not configured. */
+//    NEVPNStatusInvalid = 0,
+//    /*! @const NEVPNStatusDisconnected The VPN is disconnected. */
+//    NEVPNStatusDisconnected = 1,
+//    /*! @const NEVPNStatusConnecting The VPN is connecting. */
+//    NEVPNStatusConnecting = 2,
+//    /*! @const NEVPNStatusConnected The VPN is connected. */
+//    NEVPNStatusConnected = 3,
+//    /*! @const NEVPNStatusReasserting The VPN is reconnecting following loss of underlying network connectivity. */
+//    NEVPNStatusReasserting = 4,
+//    /*! @const NEVPNStatusDisconnecting The VPN is disconnecting. */
+//    NEVPNStatusDisconnecting = 5,
+    return NEVPNManager.sharedManager.connection.status == NEVPNStatusConnecting || NEVPNManager.sharedManager.connection.status == NEVPNStatusConnected || NEVPNManager.sharedManager.connection.status == NEVPNStatusReasserting;
 }
 
 + (CGFloat)app_navigationBarAndStatusBarHeight {
