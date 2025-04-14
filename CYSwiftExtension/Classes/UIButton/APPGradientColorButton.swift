@@ -9,7 +9,7 @@ import UIKit
 
 public class APPGradientColorButton: UIButton {
 
-    private lazy var bgGradientView: GradientColorView = {
+    private(set) lazy var bgGradientView: GradientColorView = {
         let view = GradientColorView(frame: CGRectZero)
         view.buildGradientWithColors()
         return view

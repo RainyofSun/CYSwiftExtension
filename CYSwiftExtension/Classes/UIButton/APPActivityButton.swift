@@ -52,4 +52,8 @@ public class APPActivityButton: APPGradientColorButton, ActivityAnimationProtoco
             self.isEnabled = true
         }
     }
+    
+    public func hideGradientLayer() {
+        self.bgGradientView.isHidden = true
+    }
 }
