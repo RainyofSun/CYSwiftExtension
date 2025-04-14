@@ -13,6 +13,8 @@
 
 @property (nonatomic, copy) NSString *requestDomainURL;
 @property (nonatomic, strong) NSMutableArray<NSString *>* usedDomainURLs;
+@property (nonatomic, copy) NSString *debugUrl;
+@property (nonatomic, copy) NSString *releaseUrl;
 
 @end
 
@@ -38,6 +40,11 @@
     [[APPNetRequestURLConfig urlConfig].usedDomainURLs removeAllObjects];
 }
 
++ (void)setNetworkDebugRequestURL:(NSString *)debugUrl releaseUrl:(NSString *)releaseUrl {
+    [APPNetRequestURLConfig urlConfig].debugUrl = debugUrl;
+    [APPNetRequestURLConfig urlConfig].releaseUrl = releaseUrl;
+}
+
 - (BOOL)setNewNetworkRequestDomainURL:(NSString *)url {
     if ([self.usedDomainURLs containsObject:url]) {
         return NO;
@@ -52,7 +59,17 @@
 
 - (NSURL *)networkRequestURL {
     if ([NSString isEmptyString:self.requestDomainURL]) {
-        return [NSURL URLWithString:NET_REQUEST_BASE_URL];
+        NSString *url = @"";
+#if DEBUG
+        url = self.debugUrl;
+#else
+        url = self.releaseUrl;
+#endif
+        if (![NSString isEmptyString:url]) {
+            return [NSURL URLWithString:url];
+        }
+        
+        return [NSURL URLWithString:@""];
     }
     
     return [NSURL URLWithString:self.requestDomainURL];

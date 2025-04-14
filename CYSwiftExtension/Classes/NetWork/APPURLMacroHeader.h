@@ -11,13 +11,6 @@
 #import <UIKit/UIKit.h>
 #import "APPNetResponseModel.h"
 
-#pragma mark - URL -- TODO 正式地址要替换
-#if DEBUG
-static NSString * _Nullable const NET_REQUEST_BASE_URL = @"http://8.212.182.12:8749/quen";
-#else
-static NSString * _Nullable const NET_REQUEST_BASE_URL = @"https://app.fintopia-lending.com/scale";
-#endif
-
 /*
     block 回调
  */

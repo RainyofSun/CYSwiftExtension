@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface APPNetRequestURLConfig : NSObject
 
 + (instancetype)urlConfig;
++ (void)setNetworkDebugRequestURL:(NSString *)debugUrl releaseUrl:(NSString *)releaseUrl;
 + (BOOL)reloadNetworkRequestDomainURL:(NSString *)url;
 + (void)clearDomainURLCache;
 
