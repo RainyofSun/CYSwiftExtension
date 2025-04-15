@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.2.2"
+  spec.version      = "1.2.3"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -163,6 +163,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Cache' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/Cache/*.swift'
+      spec.dependency 'CYSwiftExtension/Language'
   end
 
   spec.subspec 'UIButton' do |spec|
