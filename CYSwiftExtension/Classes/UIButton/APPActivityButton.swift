@@ -56,4 +56,8 @@ public class APPActivityButton: APPGradientColorButton, ActivityAnimationProtoco
     public func hideGradientLayer() {
         self.bgGradientView.isHidden = true
     }
+    
+    public func setGradientColors(_ colors: [UIColor], style: GradientDirectionStyle) {
+        self.bgGradientView.buildGradientWithColors(gradientColors: colors, gradientStyle: style)
+    }
 }

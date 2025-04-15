@@ -287,6 +287,7 @@
 }
 
 + (BOOL)getProxyStatus:(NSString *)url {
+
     NSDictionary *proxySettings = (__bridge NSDictionary *)CFNetworkCopySystemProxySettings();
     NSArray *proxies = (__bridge NSArray *)CFNetworkCopyProxiesForURL((__bridge CFURLRef)([NSURL URLWithString:url]), (__bridge CFDictionaryRef _Nonnull)(proxySettings));
     NSDictionary *settings = [proxies objectAtIndex:0];

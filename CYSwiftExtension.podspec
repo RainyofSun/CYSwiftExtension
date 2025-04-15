@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.2.1"
+  spec.version      = "1.2.2"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -179,6 +179,15 @@ Pod::Spec.new do |spec|
   spec.subspec 'ProtocolView' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ProtocolView/*'
       spec.dependency "SnapKit", "5.6.0"
+  end
+
+  spec.subspec 'Language' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Language/*'
+  end
+
+  spec.subspec 'CocoaLog' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/CocoaLog/*'
+      spec.dependency "CocoaLumberjack/Swift", "3.8.5"
   end
 
   # spec.exclude_files = "Classes/Exclude"

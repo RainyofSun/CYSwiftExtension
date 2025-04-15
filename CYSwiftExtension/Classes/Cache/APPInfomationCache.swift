@@ -8,6 +8,20 @@
 import UIKit
 
 public class APPInfomationCache: NSObject {
+    // MARK: 多语言
+    class public func internationalLanguageType() -> InterbationalLanguage {
+        if let _code = UserDefaults.standard.value(forKey: APPLICATION_LANGUAGE_KEY) as? Int, let _type = InterbationalLanguage(rawValue: _code) {
+            return _type
+        }
+        
+        return .English
+    }
+    
+    class public func saveInternationalLanguage(_ language: InterbationalLanguage) {
+        UserDefaults.standard.setValue(language.rawValue, forKey: APPLICATION_LANGUAGE_KEY)
+        UserDefaults.standard.synchronize()
+    }
+    
     // MARK: 登录信息的本地化
     class public func loginInformationReadFormDiskCache() -> String? {
         if let _str = UserDefaults.standard.value(forKey: APPLICATION_SAVE_LOGIN_MODEL) as? String {

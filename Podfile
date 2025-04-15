@@ -12,6 +12,7 @@ def CommonPods
    pod 'Reachability', '3.2'
    pod 'SnapKit', '5.6.0'
    pod 'Toast', '4.1.1'
+   pod 'CocoaLumberjack/Swift'
 end
 
 target 'CYSwiftExtension' do
