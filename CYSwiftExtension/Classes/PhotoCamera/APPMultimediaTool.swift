@@ -27,6 +27,7 @@ public class APPMultimediaTool: NSObject {
     weak open var toolDelegate: APPMultimediaProtocol?
     
     private weak var persent_vc: UIViewController?
+    private lazy var proxy = APPTZImageickerHandler(proxyDelegateHandler: self)
     
     public init(presentViewController controller: UIViewController) {
         super.init()
@@ -88,8 +89,9 @@ public class APPMultimediaTool: NSObject {
                 self?.persent_vc?.showSystemStyleSettingAlert("Grant album permission to conveniently select and upload identity photos and accelerate the application process", okTitle: nil, cancelTitle: nil)
                 return
             }
+            
             dispatch_async_on_main_queue {
-                let imagePickerVc = TZImagePickerController(maxImagesCount: 1, columnNumber: 4, delegate: _self, pushPhotoPickerVc: true)
+                let imagePickerVc = TZImagePickerController(maxImagesCount: 1, columnNumber: 4, delegate: _self.proxy, pushPhotoPickerVc: true)
                 imagePickerVc?.allowPickingImage = true
                 imagePickerVc?.allowTakeVideo = false
                 imagePickerVc?.allowPickingGif = false
@@ -122,8 +124,8 @@ extension APPMultimediaTool: UIImagePickerControllerDelegate, UINavigationContro
 }
 
 // MARK: TZImagePickerControllerDelegate
-extension APPMultimediaTool: TZImagePickerControllerDelegate {
-    public func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
+extension APPMultimediaTool: TZImagePickerControllerProxyProtocol {
+    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!) {
         
         guard let image = photos.first else {
             return
