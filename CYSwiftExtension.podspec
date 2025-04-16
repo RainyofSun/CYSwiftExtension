@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.2.3"
+  spec.version      = "1.2.4"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -136,7 +136,7 @@ Pod::Spec.new do |spec|
   end
 
   # Swift 文件没有头文件
-  spec.public_header_files = "CYSwiftExtension/Classes/*.h"
+  spec.public_header_files = "CYSwiftExtension/Classes/Header/*.h"
 
   # Swift 文件选择模式
   # spec.ios.source_files  = "CYSwiftExtension/Classes/*"
@@ -189,6 +189,21 @@ Pod::Spec.new do |spec|
   spec.subspec 'CocoaLog' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/CocoaLog/*'
       spec.dependency "CocoaLumberjack/Swift", "3.8.5"
+  end
+
+  spec.subspec 'PhotoCamera' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/PhotoCamera/*'
+      spec.dependency 'CYSwiftExtension/Auth'
+      spec.dependency 'CYSwiftExtension/ViewController'
+      spec.dependency "YYKit", "1.0.9"
+      spec.dependency "JKSwiftExtension", "2.7.1"
+      spec.dependency "TZImagePickerController", "3.8.8"
+  end
+
+  spec.subspec 'Web' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Web/*'
+      spec.dependency 'CYSwiftExtension/UIDevice'
+      spec.dependency 'CYSwiftExtension/ViewController'
   end
 
   # spec.exclude_files = "Classes/Exclude"

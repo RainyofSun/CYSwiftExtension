@@ -17,30 +17,40 @@ PODS:
   - CocoaLumberjack/Core (3.8.5)
   - CocoaLumberjack/Swift (3.8.5):
     - CocoaLumberjack/Core
+  - JKSwiftExtension (2.7.1)
   - MJRefresh (3.7.5)
   - Reachability (3.2)
   - SnapKit (5.6.0)
   - Toast (4.1.1)
+  - TZImagePickerController (3.8.8):
+    - TZImagePickerController/Basic (= 3.8.8)
+    - TZImagePickerController/Location (= 3.8.8)
+  - TZImagePickerController/Basic (3.8.8)
+  - TZImagePickerController/Location (3.8.8)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - AFNetworking (from `https://github.com/crasowas/AFNetworking.git`)
-  - CocoaLumberjack/Swift
+  - CocoaLumberjack/Swift (= 3.8.5)
+  - JKSwiftExtension (= 2.7.1)
   - MJRefresh (= 3.7.5)
   - Reachability (= 3.2)
   - SnapKit (= 5.6.0)
   - Toast (= 4.1.1)
+  - TZImagePickerController (= 3.8.8)
   - YYKit (= 1.0.9)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CocoaLumberjack
+    - JKSwiftExtension
     - MJRefresh
     - Reachability
     - SnapKit
     - Toast
+    - TZImagePickerController
     - YYKit
 
 EXTERNAL SOURCES:
@@ -55,12 +65,14 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 07fdd55e08bfc815311d558d62b0f9660ef83d1e
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
+  JKSwiftExtension: 5b2150fe720d39bb3b1dea411b2cce92d68d4de0
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
+  TZImagePickerController: d084a7b97c82d387e7669dd86dc9a9057500aacf
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: e4653e4f137c91a1a89221ccee02c7ad9220f83c
+PODFILE CHECKSUM: ec9b990d5a265cad1ce1659ee365355b90b7d436
 
 COCOAPODS: 1.16.2

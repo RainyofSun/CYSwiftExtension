@@ -1,0 +1,12 @@
+//
+//  module.modulemap
+//  CYSwiftExtension
+//
+//  Created by 一刻 on 2025/4/16.
+//
+
+module ObjcDeviceFramework {
+    header "UIDevice+DeviceExtension.h"
+
+    export *
+}

@@ -12,7 +12,9 @@ def CommonPods
    pod 'Reachability', '3.2'
    pod 'SnapKit', '5.6.0'
    pod 'Toast', '4.1.1'
-   pod 'CocoaLumberjack/Swift'
+   pod 'CocoaLumberjack/Swift', '3.8.5'
+   pod 'TZImagePickerController', '3.8.8'
+   pod 'JKSwiftExtension', "2.7.1"
 end
 
 target 'CYSwiftExtension' do
