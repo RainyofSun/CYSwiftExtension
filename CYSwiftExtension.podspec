@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.2.5"
+  spec.version      = "1.2.6"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -193,10 +193,6 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'PhotoCamera' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/PhotoCamera/*'
-      spec.dependency 'CYSwiftExtension/Auth'
-      spec.module_map = "CYSwiftExtension/Auth/module.modulemap"
-      spec.dependency 'CYSwiftExtension/ViewController'
-      spec.module_map = "CYSwiftExtension/ViewController/module.modulemap"
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "JKSwiftExtension", "2.7.1"
       spec.dependency "TZImagePickerController", "3.8.8"
@@ -204,10 +200,6 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Web' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/Web/*'
-      spec.dependency 'CYSwiftExtension/UIDevice'
-      spec.module_map = "CYSwiftExtension/UIDevice/module.modulemap"
-      spec.dependency 'CYSwiftExtension/ViewController'
-      spec.module_map = "CYSwiftExtension/ViewController/module.modulemap"
   end
 
   # spec.exclude_files = "Classes/Exclude"
@@ -249,6 +241,6 @@ Pod::Spec.new do |spec|
   # spec.requires_arc = true
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64', 'DEFINES_MODULE' => 'YES'}
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64'}
   spec.swift_version = '5.2'
 end

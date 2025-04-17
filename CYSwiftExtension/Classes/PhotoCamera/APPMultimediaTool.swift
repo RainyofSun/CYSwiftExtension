@@ -7,8 +7,6 @@
 
 import UIKit
 import TZImagePickerController
-import ObjcAuthFramework
-import ObjcViewControllerFramework
 import YYKit
 import JKSwiftExtension
 
@@ -60,9 +58,11 @@ public class APPMultimediaTool: NSObject {
     }
     
     public func takingPhoto(_ isFrontCamera: Bool) {
-        DeviceAuthorizationTool.authorization().requestDeviceCameraAuthrization {[weak self] (auth: Bool) in
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) {[weak self] (auth: Bool) in
             if !auth {
-                self?.persent_vc?.showSystemStyleSettingAlert("Authorize camera access to easily take ID card photos and have a convenient operation process.", okTitle: nil, cancelTitle: nil)
+                dispatch_async_on_main_queue {
+                    self?.showSystemAlertController("Authorize camera access to easily take ID card photos and have a convenient operation process.")
+                }
                 return
             }
             
@@ -80,13 +80,15 @@ public class APPMultimediaTool: NSObject {
     }
     
     public func takingPictureFormAlbum() {
-        DeviceAuthorizationTool.authorization().requestDevicePhotoAuthrization(ReadAndWrite) { [weak self] (auth: Bool) in
+        PHPhotoLibrary.requestAuthorization(for: PHAccessLevel.readWrite) { [weak self] (authStatus: PHAuthorizationStatus) in
             guard let _self = self else {
                 return
             }
             
-            guard auth else {
-                self?.persent_vc?.showSystemStyleSettingAlert("Grant album permission to conveniently select and upload identity photos and accelerate the application process", okTitle: nil, cancelTitle: nil)
+            guard authStatus == .authorized || authStatus == .limited else {
+                dispatch_async_on_main_queue {
+                    self?.showSystemAlertController("Grant album permission to conveniently select and upload identity photos and accelerate the application process")
+                }
                 return
             }
             
@@ -103,6 +105,24 @@ public class APPMultimediaTool: NSObject {
                 _self.persent_vc?.present(imagePickerVc!, animated: true, completion: nil)
             }
         }
+    }
+    
+    private func showSystemAlertController(_ title: String) {
+        let alertVC: UIAlertController = UIAlertController(title: nil, message: title, preferredStyle: UIAlertController.Style.alert)
+        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (okAction: UIAlertAction) in
+            
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (cancel: UIAlertAction) in
+            if UIApplication.shared.canOpenURL(NSURL(string: UIApplication.openSettingsURLString)! as URL) {
+                UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString)! as URL, options: [:], completionHandler: nil)
+            }
+        }
+        
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancelAction)
+        
+        self.persent_vc?.present(alertVC, animated: true)
     }
 }
 

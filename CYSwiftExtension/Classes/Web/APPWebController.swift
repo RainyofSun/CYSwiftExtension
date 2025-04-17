@@ -7,8 +7,7 @@
 
 import UIKit
 import WebKit
-import ObjcDeviceFramework
-import ObjcViewControllerFramework
+import JKSwiftExtension
 
 public class APPWebController: UIViewController {
 
@@ -65,7 +64,7 @@ public class APPWebController: UIViewController {
     
     public func hookMethodLayout() {
         self.processBarView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(UIDevice.app_navigationBarAndStatusBarHeight())
+            make.top.equalToSuperview().offset(jk_kStatusBarFrameH + jk_kNavFrameH)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(2)
         }
@@ -81,7 +80,7 @@ public class APPWebController: UIViewController {
         
     }
     
-    public override func shouldPop() -> Bool {
+    public func webControllerCanPop() -> Bool {
         if self.webView.canGoBack {
             self.webView.goBack()
         } else {
