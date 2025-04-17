@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import JKSwiftExtension
+import SnapKit
 
 public class APPWebController: UIViewController {
 
