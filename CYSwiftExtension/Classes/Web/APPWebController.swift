@@ -24,7 +24,7 @@ open class APPWebController: UIViewController {
         return view
     }()
     
-    private(set) lazy var processBarView: UIProgressView = {
+    private lazy var processBarView: UIProgressView = {
         let view = UIProgressView(progressViewStyle: .default)
         view.isHidden = true
         return view
@@ -79,6 +79,11 @@ open class APPWebController: UIViewController {
     
     open func hookMethodWebFuncCallback(_ funcName: String, funcParams: [String]) {
         
+    }
+    
+    open func setProcessBarTrackColor(_ trackColor: UIColor, tintColor: UIColor) {
+        self.processBarView.trackTintColor = trackColor
+        self.processBarView.tintColor = tintColor
     }
     
     public func webControllerCanPop() -> Bool {
