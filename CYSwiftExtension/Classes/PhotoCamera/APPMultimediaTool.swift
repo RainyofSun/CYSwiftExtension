@@ -57,11 +57,11 @@ public class APPMultimediaTool: NSObject {
         self.persent_vc?.present(alertSheet, animated: true)
     }
     
-    public func takingPhoto(_ isFrontCamera: Bool) {
+    public func takingPhoto(_ isFrontCamera: Bool, tips: String = "Authorize camera access to easily take ID card photos and have a convenient operation process.") {
         AVCaptureDevice.requestAccess(for: AVMediaType.video) {[weak self] (auth: Bool) in
             if !auth {
                 dispatch_async_on_main_queue {
-                    self?.showSystemAlertController("Authorize camera access to easily take ID card photos and have a convenient operation process.")
+                    self?.showSystemAlertController(tips)
                 }
                 return
             }
@@ -79,7 +79,7 @@ public class APPMultimediaTool: NSObject {
         }
     }
     
-    public func takingPictureFormAlbum() {
+    public func takingPictureFormAlbum(tips: String = "Grant album permission to conveniently select and upload identity photos and accelerate the application process") {
         PHPhotoLibrary.requestAuthorization(for: PHAccessLevel.readWrite) { [weak self] (authStatus: PHAuthorizationStatus) in
             guard let _self = self else {
                 return
@@ -87,7 +87,7 @@ public class APPMultimediaTool: NSObject {
             
             guard authStatus == .authorized || authStatus == .limited else {
                 dispatch_async_on_main_queue {
-                    self?.showSystemAlertController("Grant album permission to conveniently select and upload identity photos and accelerate the application process")
+                    self?.showSystemAlertController(tips)
                 }
                 return
             }
