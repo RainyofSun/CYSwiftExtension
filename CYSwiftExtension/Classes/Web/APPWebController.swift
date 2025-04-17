@@ -10,7 +10,7 @@ import WebKit
 import JKSwiftExtension
 import SnapKit
 
-public class APPWebController: UIViewController {
+open class APPWebController: UIViewController {
 
     private var linkURL: String?
     private var gotoRoot: Bool = true
@@ -37,7 +37,7 @@ public class APPWebController: UIViewController {
         self.gotoRoot = root
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -54,7 +54,7 @@ public class APPWebController: UIViewController {
     }
     
     /// 钩子方法 --- 子类覆写
-    public func hookMethodUI() {
+    open func hookMethodUI() {
         self.view.backgroundColor = .white
         self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         self.webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
@@ -63,7 +63,7 @@ public class APPWebController: UIViewController {
         self.view.addSubview(self.processBarView)
     }
     
-    public func hookMethodLayout() {
+    open func hookMethodLayout() {
         self.processBarView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(jk_kStatusBarFrameH + jk_kNavFrameH)
             make.horizontalEdges.equalToSuperview()
@@ -77,7 +77,7 @@ public class APPWebController: UIViewController {
         }
     }
     
-    public func hookMethodWebFuncCallback(_ funcName: String, funcParams: [String]) {
+    open func hookMethodWebFuncCallback(_ funcName: String, funcParams: [String]) {
         
     }
     
