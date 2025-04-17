@@ -106,7 +106,7 @@ public class APPWebController: UIViewController {
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        APPCocoaLog.debug("网页加载进度---\(webView.estimatedProgress)")
+        print("网页加载进度---\(webView.estimatedProgress)")
         if keyPath == "estimatedProgress" {
             DispatchQueue.main.async {
                 let viewProgress = Float(self.webView.estimatedProgress)

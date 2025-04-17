@@ -201,6 +201,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'Web' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/Web/*'
       spec.dependency "JKSwiftExtension", "2.7.1"
+      spec.dependency "SnapKit", "5.6.0"
   end
 
   # spec.exclude_files = "Classes/Exclude"
