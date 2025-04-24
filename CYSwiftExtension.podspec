@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.3.3"
+  spec.version      = "1.3.5"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -143,6 +143,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'ScrollView' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ScrollView/*.swift'
       spec.dependency "MJRefresh", "3.7.5"
+      spec.dependency "SnapKit", "5.6.0"
   end
 
   spec.subspec 'GradientView' do |spec|
