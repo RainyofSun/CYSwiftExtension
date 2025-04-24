@@ -7,6 +7,7 @@
 
 import UIKit
 import MJRefresh
+import SnapKit
 
 // 空白页配置结构体
 public struct EmptyViewConfig {
@@ -164,7 +165,7 @@ extension UIScrollView {
     /// 显示空白页
     public func showEmptyView(config: EmptyViewConfig) {
         if self.emptyView != nil && self.emptyView?.superview != nil {
-            self.hideEmptyView()
+            self.emptyView?.isHidden = false
             return
         }
         
@@ -173,13 +174,12 @@ extension UIScrollView {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(containerView)
         
-        NSLayoutConstraint.activate([
-            containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: config.verticalOffset),
-            containerView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.8)
-        ])
+        containerView.snp.makeConstraints { make in
+            make.height.centerX.top.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.8)
+        }
         
-        var lastView: UIView = containerView
+        var lastView: UIView?
         
         // 添加图片
         if let image = config.image {
@@ -188,12 +188,11 @@ extension UIScrollView {
             imageView.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(imageView)
             
-            NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-                imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-                imageView.widthAnchor.constraint(lessThanOrEqualTo: containerView.widthAnchor),
-                imageView.heightAnchor.constraint(lessThanOrEqualTo: containerView.widthAnchor)
-            ])
+            imageView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(config.verticalOffset)
+                make.size.equalTo(image.size)
+            }
             
             lastView = imageView
         }
@@ -209,11 +208,15 @@ extension UIScrollView {
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(titleLabel)
             
-            NSLayoutConstraint.activate([
-                titleLabel.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 20),
-                titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
-            ])
+            titleLabel.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                if let _temp = lastView {
+                    make.top.equalTo(_temp.snp.bottom).offset(8)
+                } else {
+                    make.centerY.equalToSuperview().offset(config.verticalOffset)
+                }
+                make.width.equalToSuperview().multipliedBy(0.8)
+            }
             
             lastView = titleLabel
         }
@@ -229,21 +232,20 @@ extension UIScrollView {
             button.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(button)
             
-            NSLayoutConstraint.activate([
-                button.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 20),
-                button.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-                button.widthAnchor.constraint(equalToConstant: config.buttonSize.width),
-                button.heightAnchor.constraint(equalToConstant: config.buttonSize.height),
-                button.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-            ])
+            button.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                if let _temp = lastView {
+                    make.top.equalTo(_temp.snp.bottom).offset(8)
+                } else {
+                    make.centerY.equalToSuperview().offset(config.verticalOffset)
+                }
+                
+                make.size.equalTo(config.buttonSize)
+            }
             
             if let action = config.buttonAction {
                 button.addAction(UIAction { _ in action() }, for: .touchUpInside)
             }
-        } else {
-            NSLayoutConstraint.activate([
-                lastView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-            ])
         }
         
         self.emptyView = containerView
