@@ -30,7 +30,7 @@ open class APPWebController: UIViewController {
         return view
     }()
     
-    open init(withWebLinkURL url: String, backToRoot root: Bool = true, webFuncScriptHandler handlers: [String]) {
+    public init(withWebLinkURL url: String, backToRoot root: Bool = true, webFuncScriptHandler handlers: [String]) {
         super.init(nibName: nil, bundle: nil)
         self.webFuncName.append(contentsOf: handlers)
         self.linkURL = url

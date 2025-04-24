@@ -8,8 +8,26 @@
 import UIKit
 import MJRefresh
 
+// 空白页配置结构体
+public struct EmptyViewConfig {
+    public var image: UIImage?
+    public var title: String?
+    public var titleColor: UIColor = .gray
+    public var titleFont: UIFont = .systemFont(ofSize: 15)
+    public var buttonTitle: String?
+    public var buttonTitleColor: UIColor = .white
+    public var buttonBackgroundColor: UIColor = .blue
+    public var buttonFont: UIFont = .systemFont(ofSize: 15)
+    public var buttonSize: CGSize = CGSize(width: 120, height: 40)
+    public var buttonCornerRadius: CGFloat = 20
+    public var verticalOffset: CGFloat = 0
+    public var buttonAction: (() -> Void)?
+    
+    public init() {}
+}
+
 extension UIScrollView {
-    public func addMJRefresh(addFooter: Bool, refreshHandler: (@escaping (Bool) -> Void)) {
+    public func addMJRefresh(addFooter: Bool = false, emptyViewConfig: EmptyViewConfig? = nil, refreshHandler: (@escaping (Bool) -> Void)) {
         if addFooter {
             self.addMJFooter {
                 refreshHandler(false)
@@ -19,26 +37,40 @@ extension UIScrollView {
         self.addMJHeader {
             refreshHandler(true)
         }
+
+        self.emptyViewConfig = emptyViewConfig
     }
     
-    public func reload(isEmpty: Bool) {
+    public func reload(isNoMoreData: Bool) {
         if let _tab = self as? UITableView {
             _tab.reloadData()
+
+            if _tab.numberOfRows(inSection: 0) == .zero {
+                self.showEmptyView(config: self.emptyViewConfig ?? EmptyViewConfig())
+            } else {
+                self.hideEmptyView()
+            }
         }
         
         if let _tab = self as? UICollectionView  {
             _tab.reloadData()
+
+            if _tab.numberOfItems(inSection: 0) == .zero {
+                self.showEmptyView(config: self.emptyViewConfig ?? EmptyViewConfig())
+            } else {
+                self.hideEmptyView()
+            }
         }
         
         self.mj_header?.endRefreshing()
         
         if let _footer = self.mj_footer {
-            if isEmpty {
+            if isNoMoreData {
                 _footer.endRefreshingWithNoMoreData()
             } else {
                 _footer.endRefreshing()
             }
-            _footer.isHidden = isEmpty
+            _footer.isHidden = isNoMoreData
         }
     }
     
@@ -102,6 +134,124 @@ extension UIScrollView {
         if let _noMore = noMoreText {
             _footer.setTitle(_noMore, for: MJRefreshState.noMoreData)
         }
+    }
+    
+    // 空白页视图
+    private struct AssociatedKeys {
+        static var emptyView = "emptyView"
+        static var emptyViewConfig = "emptyViewConfig"
+    }
+    
+    private var emptyView: UIView? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.emptyView) as? UIView
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.emptyView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    // 空白页配置
+    private var emptyViewConfig: EmptyViewConfig? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.emptyViewConfig) as? EmptyViewConfig
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.emptyViewConfig, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    /// 显示空白页
+    public func showEmptyView(config: EmptyViewConfig) {
+        if self.emptyView != nil && self.emptyView?.superview != nil {
+            self.hideEmptyView()
+            return
+        }
+        
+        let containerView = UIView()
+        containerView.backgroundColor = .clear
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(containerView)
+        
+        NSLayoutConstraint.activate([
+            containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: config.verticalOffset),
+            containerView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.8)
+        ])
+        
+        var lastView: UIView = containerView
+        
+        // 添加图片
+        if let image = config.image {
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .scaleAspectFit
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(imageView)
+            
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+                imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                imageView.widthAnchor.constraint(lessThanOrEqualTo: containerView.widthAnchor),
+                imageView.heightAnchor.constraint(lessThanOrEqualTo: containerView.widthAnchor)
+            ])
+            
+            lastView = imageView
+        }
+        
+        // 添加标题
+        if let title = config.title {
+            let titleLabel = UILabel()
+            titleLabel.text = title
+            titleLabel.textColor = config.titleColor
+            titleLabel.font = config.titleFont
+            titleLabel.textAlignment = .center
+            titleLabel.numberOfLines = 0
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(titleLabel)
+            
+            NSLayoutConstraint.activate([
+                titleLabel.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 20),
+                titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            ])
+            
+            lastView = titleLabel
+        }
+        
+        // 添加按钮
+        if let buttonTitle = config.buttonTitle {
+            let button = UIButton(type: .system)
+            button.setTitle(buttonTitle, for: .normal)
+            button.setTitleColor(config.buttonTitleColor, for: .normal)
+            button.backgroundColor = config.buttonBackgroundColor
+            button.titleLabel?.font = config.buttonFont
+            button.layer.cornerRadius = config.buttonCornerRadius
+            button.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(button)
+            
+            NSLayoutConstraint.activate([
+                button.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 20),
+                button.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                button.widthAnchor.constraint(equalToConstant: config.buttonSize.width),
+                button.heightAnchor.constraint(equalToConstant: config.buttonSize.height),
+                button.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+            
+            if let action = config.buttonAction {
+                button.addAction(UIAction { _ in action() }, for: .touchUpInside)
+            }
+        } else {
+            NSLayoutConstraint.activate([
+                lastView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+        }
+        
+        self.emptyView = containerView
+    }
+    
+    /// 隐藏空白页
+    public func hideEmptyView() {
+        self.emptyView?.isHidden = true
     }
 }
 
