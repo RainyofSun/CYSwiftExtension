@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)requestParams;
 
 - (void)appCommonParamsKeyModel:(APPPublicParamsKey *)keyModel;
+- (void)appUpdateLoginToken:(NSString *)token;
 
 - (NSString *)splicingPublicParams:(NSString *)requestURL;
 

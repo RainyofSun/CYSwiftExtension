@@ -42,6 +42,12 @@
     self._key_model = keyModel;
 }
 
+- (void)appUpdateLoginToken:(NSString *)token {
+    if (self._key_model != nil) {
+        self._key_model.loginToken = token;
+    }
+}
+
 - (NSString *)splicingPublicParams:(NSString *)requestURL {
     if (self._key_model == nil) {
         NSLog(@"ERROR: ------------- 请设置公共参数Key的集合 ----------------");
