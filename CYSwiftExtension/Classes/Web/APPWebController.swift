@@ -65,7 +65,7 @@ open class APPWebController: UIViewController {
     
     open func hookMethodLayout() {
         self.processBarView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(jk_kStatusBarFrameH + jk_kNavFrameH)
+            make.top.equalToSuperview().offset(jk_kNavFrameH)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(2)
         }
