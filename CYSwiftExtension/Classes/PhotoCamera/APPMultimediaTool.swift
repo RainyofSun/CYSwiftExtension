@@ -133,7 +133,7 @@ extension APPMultimediaTool: UIImagePickerControllerDelegate, UINavigationContro
         var filePath: String = ""
         if let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
             // 存储到临时路径下
-            filePath = document + "\(Date.jk.secondStamp).png"
+            filePath = document + "/\(Date.jk.secondStamp).png"
         }
         
         try? compress_img_data?.write(to: NSURL(fileURLWithPath: filePath) as URL)
@@ -155,7 +155,7 @@ extension APPMultimediaTool: TZImagePickerControllerProxyProtocol {
         var filePath: String = ""
         if let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
             // 存储到临时路径下
-            filePath = document + "\(Date.jk.secondStamp).png"
+            filePath = document + "/\(Date.jk.secondStamp).png"
         }
         
         try? compress_img_data?.write(to: NSURL(fileURLWithPath: filePath) as URL)
