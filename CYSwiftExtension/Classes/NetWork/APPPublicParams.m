@@ -42,9 +42,15 @@
     self._key_model = keyModel;
 }
 
-- (void)appUpdateLoginToken:(NSString *)token {
+- (void)appUpdateLoginToken:(NSString *)token withContryCode:(NSString *)countryCode {
     if (self._key_model != nil) {
-        self._key_model.loginToken = token;
+        if (![NSString isEmptyString:token]) {
+            self._key_model.loginToken = token;
+        }
+        
+        if (![NSString isEmptyString:countryCode]) {
+            self._key_model.countryCode = countryCode;
+        }
     }
 }
 
