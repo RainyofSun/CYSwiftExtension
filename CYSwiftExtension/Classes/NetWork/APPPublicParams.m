@@ -87,7 +87,9 @@
         [url_components addObject:[[NSURLQueryItem alloc] initWithName:self._key_model.idfaKey value:IDFAStr]];
     }
     
-    [url_components addObject:[[NSURLQueryItem alloc] initWithName:self._key_model.countryCodeKey value:[NSString stringWithFormat:@"%@", self._key_model.countryCode]]];
+    if (![NSString isEmptyString:self._key_model.countryCode]) {
+        [url_components addObject:[[NSURLQueryItem alloc] initWithName:self._key_model.countryCodeKey value:[NSString stringWithFormat:@"%@", self._key_model.countryCode]]];
+    }
     
     if ([requestURL containsString:@"?"]) {
         NSArray<NSArray <NSString *>*>* argusArray = [self separamtionRequestURLParameter:requestURL];

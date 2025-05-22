@@ -16,6 +16,7 @@ public class APPCodeTimerButton: UIControl {
         view.font = UIFont.systemFont(ofSize: 14)
         view.text = "Get Code"
         view.textColor = .white
+        view.textAlignment = .center
         return view
     }()
     
