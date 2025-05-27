@@ -25,7 +25,7 @@
     if (requestConfig.requestType == AFNRequestType_Get) {
         return [[APPNetRequestConfig requestConfig].manager GET:requestUrl parameters:requestConfig.requestParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             APPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
-            if (responseModel.reqeustError && failure != nil) {
+            if (responseModel == nil || [responseModel isEqual:[NSNull null]] || (responseModel.reqeustError && failure != nil)) {
                 failure(nil, responseModel.reqeustError);
             } else {
                 APPSuccessResponse *response = [[APPSuccessResponse alloc] init];
@@ -43,7 +43,7 @@
     } else if (requestConfig.requestType == AFNRequestType_Post) {
         return [[APPNetRequestConfig requestConfig].manager POST:requestUrl parameters:requestConfig.requestParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             APPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
-            if (responseModel.reqeustError && failure != nil) {
+            if (responseModel == nil || [responseModel isEqual:[NSNull null]] || (responseModel.reqeustError && failure != nil)) {
                 failure(nil, responseModel.reqeustError);
             } else {
                 APPSuccessResponse *response = [[APPSuccessResponse alloc] init];
@@ -70,7 +70,7 @@
             }];
         } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             APPNetResponseModel *responseModel = [self jsonToModel:responseObject requestTask:task];
-            if (responseModel.reqeustError && failure != nil) {
+            if (responseModel == nil || [responseModel isEqual:[NSNull null]] || (responseModel.reqeustError && failure != nil)) {
                 failure(nil, responseModel.reqeustError);
             } else {
                 APPSuccessResponse *response = [[APPSuccessResponse alloc] init];
@@ -116,11 +116,11 @@
 #if DEBUG
     NSLog(@"RequestURL = \n %@ \n Response = \n %@ \nEnd -------", task.currentRequest.URL.absoluteString, jsonStr);
 #endif
-    if ([NSString isEmptyString:jsonStr]) {
+    APPNetResponseModel *responseModel = [APPNetResponseModel modelWithJSON:jsonStr];
+    if ([NSString isEmptyString:jsonStr] || responseModel == nil || [responseModel isEqual:[NSNull null]]) {
         return nil;
     }
     
-    APPNetResponseModel *responseModel = [APPNetResponseModel modelWithJSON:jsonStr];
     if (responseModel.prize == -2) {
         responseModel.reqeustError = [[NSError alloc] initWithDomain:@"request.error" code:responseModel.prize userInfo:@{NSLocalizedFailureReasonErrorKey: responseModel.nobel}];
         // 登录失效.重新登录
