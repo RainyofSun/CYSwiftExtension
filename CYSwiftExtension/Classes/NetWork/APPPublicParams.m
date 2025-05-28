@@ -11,6 +11,7 @@
 #import "UIDevice+DeviceExtension.h"
 #import <AdSupport/AdSupport.h>
 #import "DeviceAuthorizationTool.h"
+#import "APPURLMacroHeader.h"
 
 @implementation APPPublicParamsKey
 
@@ -65,7 +66,7 @@
     NSString *idfvStr = [[UIDevice currentDevice] readIDFVFormDeviceKeyChain];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     NSString *loginToken = self._key_model.loginToken;
-    NSString *IDFAStr = [[DeviceAuthorizationTool authorization] ATTTrackingStatus] == ATTrackingManagerAuthorizationStatusAuthorized ? [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString : @"";
+    NSString *IDFAStr = [[DeviceAuthorizationTool authorization] ATTTrackingStatus] == ATTrackingManagerAuthorizationStatusAuthorized ? [ASIdentifierManager sharedManager].advertisingIdentifier.UUIDString : APP_DEFAULT_IDFA_MARK;
     
     NSURLComponents *components = [[NSURLComponents alloc] initWithString:requestURL];
     NSMutableArray<NSURLQueryItem *>* url_components = [NSMutableArray array];

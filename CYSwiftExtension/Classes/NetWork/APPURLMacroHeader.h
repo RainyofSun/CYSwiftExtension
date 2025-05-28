@@ -25,4 +25,9 @@ static NSString * _Nonnull const APP_LOGIN_EXPIRED_NOTIFICATION = @"com.mx.notif
 /// 登录成功
 static NSString * _Nonnull const APP_LOGIN_SUCCESS_NOTIFICATION = @"com.mx.notification.name.login.success";
 
+/*
+    默认的 IDFA 的序列号
+ */
+static NSString * _Nonnull const APP_DEFAULT_IDFA_MARK = @"00000000-0000-0000-0000-000000000000";
+
 #endif /* APPURLMacroHeader_h */
