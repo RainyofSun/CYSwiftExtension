@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.4.8"
+  spec.version      = "1.4.9"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -106,7 +106,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'UIDevice' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/UIDevice/*.{h,m}'
       spec.dependency "YYKit", "1.0.9"
-      spec.dependency "Reachability", "3.2"
+      spec.dependency "Reachability", "3.7.6"
       spec.dependency 'CYSwiftExtension/String'
   end
 
@@ -175,7 +175,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'NetOberver' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/NetOberver/*'
-      spec.dependency "Reachability", "3.2"
+      spec.dependency "Reachability", "3.7.6"
   end
 
   spec.subspec 'ProtocolView' do |spec|
