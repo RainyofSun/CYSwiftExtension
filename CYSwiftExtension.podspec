@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.4.9"
+  spec.version      = "1.5.0"
   spec.summary      = "A short description of CYSwiftExtension."
 
   # This description is used to generate tags and improve search results.
@@ -143,7 +143,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'ScrollView' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ScrollView/*.swift'
       spec.dependency "MJRefresh", "3.7.5"
-      spec.dependency "SnapKit", "5.6.0"
+      spec.dependency "SnapKit", "5.7.1"
   end
 
   spec.subspec 'GradientView' do |spec|
@@ -169,7 +169,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'UIButton' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/UIButton/*.swift'
-      spec.dependency "SnapKit", "5.6.0"
+      spec.dependency "SnapKit", "5.7.1"
       spec.dependency 'CYSwiftExtension/GradientView'
   end
 
@@ -180,7 +180,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'ProtocolView' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ProtocolView/*'
-      spec.dependency "SnapKit", "5.6.0"
+      spec.dependency "SnapKit", "5.7.1"
   end
 
   spec.subspec 'Language' do |spec|
@@ -202,7 +202,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'Web' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/Web/*'
       spec.dependency "JKSwiftExtension", "2.7.1"
-      spec.dependency "SnapKit", "5.6.0"
+      spec.dependency "SnapKit", "5.7.1"
   end
 
   # spec.exclude_files = "Classes/Exclude"
