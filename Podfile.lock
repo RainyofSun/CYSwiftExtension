@@ -63,7 +63,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/crasowas/AFNetworking.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 07fdd55e08bfc815311d558d62b0f9660ef83d1e
+  AFNetworking: 1e49f114ce59e7156e35761e03e1087f386689e2
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
   JKSwiftExtension: 5b2150fe720d39bb3b1dea411b2cce92d68d4de0
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
