@@ -65,6 +65,8 @@ public class APPCodeTimerButton: UIControl {
         if self.system_timer == nil {
             self.system_timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCall(sender: )), userInfo: nil, repeats: true)
         }
+        
+        self.isEnabled = false
     }
     
     public func stop() {
@@ -72,6 +74,14 @@ public class APPCodeTimerButton: UIControl {
             _timer.invalidate()
             self.system_timer = nil
         }
+        
+        self.isEnabled = true
+    }
+    
+    public func initCodeTimerStatus() {
+        self.stop()
+        self.titleLab.text = self._title_text
+        self.initData()
     }
 }
 
@@ -89,9 +99,7 @@ private extension APPCodeTimerButton {
     func timerCall(sender: Timer) {
         DispatchQueue.main.async {
             if self.time_count <= .zero {
-                self.stop()
-                self.titleLab.text = self._title_text
-                self.initData()
+                self.initCodeTimerStatus()
             } else {
                 self.titleLab.text = "\(self.time_count)s"
                 self.time_count -= 1
