@@ -19,19 +19,6 @@ typedef NS_ENUM(NSInteger,AFNRequestType) {
     AFNRequestType_Download,        /// 文件下载
 };
 
-@interface APPNetResponseParsingConfig : NSObject
-
-/// 状态码 Key
-@property (nonatomic, copy) NSString *statusCodeKey;
-/// 服务器返回的提示语
-@property (nonatomic, copy) NSString *serviceTipKey;
-/// 服务器返回的数据
-@property (nonatomic, copy) NSString *dataKey;
-
-+ (instancetype)parsingConfig;
-
-@end
-
 @interface APPNetResponseModel : NSObject
 
 @property (nonatomic, assign) NSInteger prize;

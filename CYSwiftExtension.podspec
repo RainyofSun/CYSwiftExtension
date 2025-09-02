@@ -10,6 +10,16 @@
 # https://blog.csdn.net/qq_34534179/article/details/84639127
 # https://blog.csdn.net/weixin_34318272/article/details/88039959
 # https://www.jianshu.com/p/743bfd8f1d72
+# 执行命令：
+# git add.
+# git commit -m '1.5.6'
+# git push origin
+# git tag -a '1.5.6' -m '1.5.6'
+# git push --tags
+# pod lib lint --allow-warnings --verbose  
+# pod trunk push CYSwiftExtension.podspec --allow-warnings --verbose
+# 等待上传成功后更新本地库
+# pod repo update
 
 Pod::Spec.new do |spec|
 
@@ -21,7 +31,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.6.4"
+  spec.version      = "1.6.5"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
