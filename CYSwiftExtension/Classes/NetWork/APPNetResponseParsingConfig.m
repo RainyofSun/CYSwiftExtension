@@ -21,4 +21,10 @@
     return config;
 }
 
++ (void)setParsingConfig:(NSString *)statusCodeKey service:(NSString *)serviceTipKey data:(NSString *)dataKey {
+    [APPNetResponseParsingConfig parsingConfig].statusCodeKey = statusCodeKey;
+    [APPNetResponseParsingConfig parsingConfig].serviceTipKey = serviceTipKey;
+    [APPNetResponseParsingConfig parsingConfig].dataKey = dataKey;
+}
+
 @end

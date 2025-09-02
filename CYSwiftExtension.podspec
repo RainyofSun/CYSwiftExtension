@@ -20,6 +20,7 @@
 # pod trunk push CYSwiftExtension.podspec --allow-warnings --verbose
 # 等待上传成功后更新本地库
 # pod repo update
+# 注：更新版本时最好把翻墙工具退掉
 
 Pod::Spec.new do |spec|
 
@@ -31,7 +32,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.6.5"
+  spec.version      = "1.6.6"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.

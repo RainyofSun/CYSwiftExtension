@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)parsingConfig;
 
++ (void)setParsingConfig:(NSString *)statusCodeKey service:(NSString *)serviceTipKey data:(NSString *)dataKey;
+
 @end
 
 NS_ASSUME_NONNULL_END
