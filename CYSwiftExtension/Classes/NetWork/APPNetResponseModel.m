@@ -7,7 +7,22 @@
 
 #import "APPNetResponseModel.h"
 #import <YYKit/NSObject+YYModel.h>
-#import "APPNetResponseParsingConfig.h"
+
+@implementation APPNetResponseParsingConfig
+
++ (instancetype)parsingConfig {
+    static APPNetResponseParsingConfig *config;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (config == nil) {
+            config = [[APPNetResponseParsingConfig alloc] init];
+        }
+    });
+    
+    return config;
+}
+
+@end
 
 @interface APPNetResponseModel ()<YYModel>
 
