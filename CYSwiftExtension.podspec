@@ -21,8 +21,8 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.6.1"
-  spec.summary      = "A short description of CYSwiftExtension."
+  spec.version      = "1.6.2"
+  spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -30,10 +30,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  XXXXX
-                   DESC
+  CYSwiftExtension 提供了常用的 Swift 和 Objective-C 扩展工具，包括字符串处理、网络请求、UI 组件扩展、相机工具等模块，方便在 iOS 项目中快速集成和使用。
+  DESC
 
-  spec.homepage     = "http://RainyofSun/CYSwiftExtension"
+  spec.homepage     = "https://github.com/RainyofSun/CYSwiftExtension"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -86,7 +86,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/RainyofSun/CYSwiftExtension", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/RainyofSun/CYSwiftExtension.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -136,7 +136,9 @@ Pod::Spec.new do |spec|
   end
 
   # Swift 文件没有头文件
-  spec.public_header_files = "CYSwiftExtension/Classes/Header/*.h"
+  spec.subspec 'Header' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Header/*.h'
+  end
 
   # Swift 文件选择模式
   # spec.ios.source_files  = "CYSwiftExtension/Classes/*"
@@ -174,33 +176,33 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'NetOberver' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/NetOberver/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/NetOberver/*.swift'
       spec.dependency "Reachability", "3.7.6"
   end
 
   spec.subspec 'ProtocolView' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/ProtocolView/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/ProtocolView/*.swift'
       spec.dependency "SnapKit", "5.7.1"
   end
 
   spec.subspec 'Language' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/Language/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Language/*.swift'
   end
 
   spec.subspec 'CocoaLog' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/CocoaLog/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/CocoaLog/*.swift'
       spec.dependency "CocoaLumberjack/Swift", "3.8.5"
   end
 
   spec.subspec 'PhotoCamera' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/PhotoCamera/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/PhotoCamera/*.swift'
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "JKSwiftExtension", "2.7.1"
       spec.dependency "TZImagePickerController", "3.8.8"
   end
 
   spec.subspec 'Web' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/Web/*'
+      spec.ios.source_files = 'CYSwiftExtension/Classes/Web/*.swift'
       spec.dependency "JKSwiftExtension", "2.7.1"
       spec.dependency "SnapKit", "5.7.1"
   end
@@ -241,9 +243,10 @@ Pod::Spec.new do |spec|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # spec.requires_arc = true
+  spec.requires_arc = true
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64'}
+  # spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64'}
+  spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   spec.swift_version = '5.2'
 end
