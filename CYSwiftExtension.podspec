@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.6.3"
+  spec.version      = "1.6.4"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
@@ -139,9 +139,9 @@ Pod::Spec.new do |spec|
   end
 
   # Swift 文件没有头文件
-  spec.subspec 'Header' do |spec|
-      spec.ios.source_files = 'CYSwiftExtension/Classes/Header/*.h'
-  end
+  # spec.subspec 'Header' do |spec|
+  #     spec.ios.source_files = 'CYSwiftExtension/Classes/Header/*.h'
+  # end
 
   # Swift 文件选择模式
   # spec.ios.source_files  = "CYSwiftExtension/Classes/*"
