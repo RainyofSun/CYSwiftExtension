@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.6.2"
+  spec.version      = "1.6.3"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
@@ -73,7 +73,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "14.0"
 
   #  When using multiple platforms
-  # spec.ios.deployment_target = "5.0"
+  spec.ios.deployment_target = "14.0"
   # spec.osx.deployment_target = "10.7"
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
@@ -105,6 +105,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'UIDevice' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/UIDevice/*.{h,m}'
+      spec.public_header_files = 'CYSwiftExtension/Classes/UIDevice/*.h'
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "Reachability", "3.7.6"
       spec.dependency 'CYSwiftExtension/String'
@@ -112,12 +113,14 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Auth' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/Auth/*.{h,m}'
+      spec.public_header_files = 'CYSwiftExtension/Classes/Auth/*.h'
       spec.dependency 'CYSwiftExtension/ViewController'
       spec.dependency 'CYSwiftExtension/UIDevice'
   end
 
   spec.subspec 'NetWork' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/NetWork/*.{h,m}'
+      spec.public_header_files = 'CYSwiftExtension/Classes/NetWork/*.h'
       spec.dependency "AFNetworking"
       spec.dependency "YYKit", "1.0.9"
       spec.dependency "Toast", "4.1.1"
@@ -246,7 +249,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64'}
-  spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64'}
+  # spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   spec.swift_version = '5.2'
 end
