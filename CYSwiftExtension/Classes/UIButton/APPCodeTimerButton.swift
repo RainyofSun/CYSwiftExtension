@@ -34,9 +34,9 @@ public class APPCodeTimerButton: UIControl {
         self.addSubview(self.titleLab)
         
         self.titleLab.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(APP_PADDING_UNIT * 6)
+            make.horizontalEdges.equalToSuperview().inset(APP_PADDING_UNIT)
             make.verticalEdges.equalToSuperview().inset(APP_PADDING_UNIT * 2.5)
-            make.width.greaterThanOrEqualTo(66)
+            make.width.greaterThanOrEqualTo(120)
             make.height.equalTo(18)
         }
     }
