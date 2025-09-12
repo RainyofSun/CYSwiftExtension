@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.6.7"
+  spec.version      = "1.6.8"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
@@ -144,6 +144,10 @@ Pod::Spec.new do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ContactManager/*.{h,m}'
   end
 
+  spec.subspec 'UILabel' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/UILabel/*.{h,m}'
+  end
+
   spec.subspec 'ViewController' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/ViewController/*.{h,m}'
       spec.dependency 'CYSwiftExtension/String'
@@ -172,6 +176,10 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'UITextFiled' do |spec|
       spec.ios.source_files = 'CYSwiftExtension/Classes/UITextFiled/*.swift'
+  end
+
+  spec.subspec 'BuryPoint' do |spec|
+      spec.ios.source_files = 'CYSwiftExtension/Classes/BuryPoint/*.swift'
   end
 
   spec.subspec 'MarqueeView' do |spec|

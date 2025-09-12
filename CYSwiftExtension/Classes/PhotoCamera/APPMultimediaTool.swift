@@ -128,7 +128,9 @@ public class APPMultimediaTool: NSObject {
 
 extension APPMultimediaTool: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let originalImg: UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        var originalImg: UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        // 矫正图片方向
+        originalImg = originalImg.jk.fixOrientation()
         let compress_img_data = originalImg.jk.compressDataSize(maxSize: 1024 * 1024)
         var filePath: String = ""
         if let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
