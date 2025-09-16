@@ -28,4 +28,10 @@
     return [self stringByReplacingCharactersInRange:NSMakeRange(start, (self.length - start - end)) withString:str];;
 }
 
+- (NSString *)unpackingURLParameters {
+    NSString *parsa = [[self componentsSeparatedByString:@"?"] lastObject];
+    NSString *nexts = [[parsa componentsSeparatedByString:@"="] lastObject];
+    return nexts;
+}
+
 @end

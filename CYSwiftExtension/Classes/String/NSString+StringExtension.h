@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)isEmptyString:(NSString *)str;
 - (NSString *)maskPhoneNumber;
+- (NSString *)unpackingURLParameters;
 
 @end
 

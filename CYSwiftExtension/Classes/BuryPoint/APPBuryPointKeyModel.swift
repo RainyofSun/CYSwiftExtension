@@ -1,5 +1,5 @@
 //
-//  BuryPointKeyModel.swift
+//  APPBuryPointKeyModel.swift
 //  CYSwiftExtension
 //
 //  Created by 一刻 on 2025/9/12.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BuryPointKeyModel: NSObject {
+@objcMembers public class APPBuryPointKeyModel: NSObject {
     /*
      通用配置
      */
@@ -117,4 +117,6 @@ class BuryPointKeyModel: NSObject {
     var wifiNameKey2: String?
     /// Key -- Wifi
     var wifiDetailKey: String?
+    /// 设备信息的地址
+    var deviceInfoURL: String?
 }

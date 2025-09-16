@@ -15,6 +15,7 @@ def CommonPods
    pod 'CocoaLumberjack/Swift', '3.8.5'
    pod 'TZImagePickerController', '3.8.8'
    pod 'JKSwiftExtension', "2.7.1"
+   pod 'FDFullscreenPopGesture', '1.1'
 end
 
 target 'CYSwiftExtension' do

@@ -17,6 +17,7 @@ PODS:
   - CocoaLumberjack/Core (3.8.5)
   - CocoaLumberjack/Swift (3.8.5):
     - CocoaLumberjack/Core
+  - FDFullscreenPopGesture (1.1)
   - JKSwiftExtension (2.7.1)
   - MJRefresh (3.7.5)
   - Reachability (3.2)
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (from `https://github.com/crasowas/AFNetworking.git`)
   - CocoaLumberjack/Swift (= 3.8.5)
+  - FDFullscreenPopGesture (= 1.1)
   - JKSwiftExtension (= 2.7.1)
   - MJRefresh (= 3.7.5)
   - Reachability (= 3.2)
@@ -45,6 +47,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CocoaLumberjack
+    - FDFullscreenPopGesture
     - JKSwiftExtension
     - MJRefresh
     - Reachability
@@ -65,6 +68,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 07fdd55e08bfc815311d558d62b0f9660ef83d1e
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   JKSwiftExtension: 5b2150fe720d39bb3b1dea411b2cce92d68d4de0
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -73,6 +77,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: d084a7b97c82d387e7669dd86dc9a9057500aacf
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: ec9b990d5a265cad1ce1659ee365355b90b7d436
+PODFILE CHECKSUM: d8871758002048694835b52101f96428f7d58a4b
 
 COCOAPODS: 1.16.2
