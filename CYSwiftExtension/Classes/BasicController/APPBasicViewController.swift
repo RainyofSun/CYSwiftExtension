@@ -8,6 +8,7 @@
 import UIKit
 import JKSwiftExtension
 import FDFullscreenPopGesture
+import SnapKit
 
 open class APPBasicViewController: UIViewController {
 
