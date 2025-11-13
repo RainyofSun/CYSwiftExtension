@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.7.5"
+  spec.version      = "1.7.6"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
@@ -217,6 +217,7 @@ Pod::Spec.new do |spec|
       spec.dependency "FDFullscreenPopGesture", "1.1"
       spec.dependency "SnapKit", "5.7.1"
       spec.dependency 'CYSwiftExtension/GradientView'
+      spec.dependency 'CYSwiftExtension/Cache'
   end
 
   spec.subspec 'CocoaLog' do |spec|
