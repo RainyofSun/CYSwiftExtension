@@ -36,7 +36,7 @@ public class APPInfomationCache: NSObject {
         UserDefaults.standard.synchronize()
     }
     
-    // MARK: 是否首次按照
+    // MARK: 是否首次安装
     class public func applicationFirstInstall() -> Bool {
         if let _value = UserDefaults.standard.value(forKey: APPLICATION_FIRST_INSTALLATION) as? Bool {
             return _value
