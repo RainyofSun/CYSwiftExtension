@@ -21,6 +21,16 @@ open class APPBasicTabBarViewController: UITabBarController {
         }
     }
     
+    public init(controllers vcArray: [UIViewController.Type], barImages images: [[String]]) {
+        super.init(nibName: nil, bundle: nil)
+        self.vc_array.append(contentsOf: vcArray)
+        self.img_array.append(contentsOf: images)
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         self.buildTabbarUI()
@@ -30,11 +40,9 @@ open class APPBasicTabBarViewController: UITabBarController {
         self.custom_bar?.backgroundColor = color
     }
     
-    open func setTabControllerElements(controllers vcArray: [UIViewController.Type], barImages images: [[String]]) {
-        assert(!vcArray.isEmpty && !images.isEmpty, "⚠️⚠️ === 先设置 控制器集合 & 图片集合 ========")
+    open func setTabControllerElements() {
         
-        self.vc_array.append(contentsOf: vcArray)
-        self.img_array.append(contentsOf: images)
+        
     }
     
     open func currentBarItemCanSelected() -> Bool {
@@ -48,6 +56,7 @@ open class APPBasicTabBarViewController: UITabBarController {
 
 private extension APPBasicTabBarViewController {
     func buildTabbarUI (){
+        assert(!vc_array.isEmpty && !img_array.isEmpty, "⚠️⚠️ === 先设置 控制器集合 & 图片集合 ========")
         APPInfomationCache.saveApplicationInstallMark()
         self.custom_bar = APPBasicTabBar(frame: CGRect(origin: CGPointZero, size: CGSize(width: jk_kScreenW, height: barHeight)))
         self.setValue(self.custom_bar, forKey: "tabBar")
