@@ -38,14 +38,14 @@ open class APPBasicViewController: UIViewController {
         self.layoutPageViews()
     }
 
-    public func buildPageUI() {
+    open func buildPageUI() {
         self.basicScrollContentView.showsVerticalScrollIndicator = false
         self.view.backgroundColor = UIColor.hexStringColor(hexString: "#FFF2EF")
         self.view.addSubview(self.gradientView)
         self.view.addSubview(self.basicScrollContentView)
     }
     
-    public func layoutPageViews() {
+    open func layoutPageViews() {
         self.gradientView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -70,11 +70,11 @@ open class APPBasicViewController: UIViewController {
         }
     }
     
-    public func refreshMineLocations() {
+    open func refreshMineLocations() {
         
     }
     
-    public func pageNetRequest() {
+    open func pageNetRequest() {
         
     }
 }

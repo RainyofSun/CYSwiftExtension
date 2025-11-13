@@ -14,10 +14,10 @@ public protocol AutoHiddenNavigationBar where Self: UIViewController {
 
 open class APPNavigationViewController: UINavigationController {
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        
+        self.buildNavigation()
     }
     
     open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
@@ -57,6 +57,10 @@ open class APPNavigationViewController: UINavigationController {
         
         UINavigationBar.applyGlobalStyle(Style.opaque(backgroundColor: UIColor.white, titleColor: UIColor.hexStringColor(hexString: "#27272E"), font: UIFont.systemFont(ofSize: 18)))
     }
+    
+    open func buildNavigation() {
+        
+    }
 }
 
 extension APPNavigationViewController: UINavigationControllerDelegate {
@@ -70,7 +74,7 @@ extension APPNavigationViewController: UINavigationControllerDelegate {
 }
 
 extension APPNavigationViewController: UINavigationBarDelegate {
-    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
+    open func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
         return self.viewControllerShouldPop()
     }
 }
