@@ -10,7 +10,7 @@ import JKSwiftExtension
 
 open class APPBasicTabBarViewController: UITabBarController {
 
-    private var custom_bar: APPBasicTabBar?
+    private(set) var custom_bar: APPBasicTabBar?
     private var vc_array: [UIViewController.Type] = []
     private var img_array: [[String]] = []
     private(set) var barHeight: CGFloat = jk_kTabbarFrameH + 10
@@ -25,15 +25,11 @@ open class APPBasicTabBarViewController: UITabBarController {
         super.init(nibName: nil, bundle: nil)
         self.vc_array.append(contentsOf: vcArray)
         self.img_array.append(contentsOf: images)
+        self.buildTabbarUI()
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        self.buildTabbarUI()
     }
     
     open func changeBarColor(color: UIColor) {

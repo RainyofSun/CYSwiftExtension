@@ -56,12 +56,14 @@ open class APPBasicTabBar: UITabBar {
         return super.sizeThatFits(size)
     }
     
-    open func setItemContentViewUIStyle() {
+    open func setItemContentViewUIStyle(IPhoneNotchCornerRadius cornerRadius: CGFloat = -1) {
         
-        if jk_isIPhoneNotch {
-            self.itemContentView.corner(30)
-        } else {
-            self.itemContentView.corner((frame.height - 4.0 * 2) * 0.5)
+        if cornerRadius != -1 {
+            if jk_isIPhoneNotch {
+                self.itemContentView.corner(cornerRadius)
+            } else {
+                self.itemContentView.corner((frame.height - 4.0 * 2) * 0.5)
+            }
         }
     }
     
