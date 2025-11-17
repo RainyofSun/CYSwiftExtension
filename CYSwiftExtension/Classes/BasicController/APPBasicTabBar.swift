@@ -19,7 +19,7 @@ open class APPBasicTabBar: UITabBar {
 
     weak open var barDelegate: BasicTabbarProtocol?
     
-    private var barStyle: APPBasicTabBarStyleConfig?
+    private var tBarStyle: APPBasicTabBarStyleConfig?
     private var original_size: CGSize?
     private let _top_y = 15
     private let _item_padding = 15
@@ -30,9 +30,9 @@ open class APPBasicTabBar: UITabBar {
         return view
     }()
     
-    init(frame: CGRect, barConfig config: APPBasicTabBarStyleConfig) {
+    init(frame: CGRect, barConfig config: APPBasicTabBarStyleConfig?) {
         super.init(frame: frame)
-        self.barStyle = config
+        self.tBarStyle = config ?? APPBasicTabBarStyleConfig()
         self.backgroundColor = .clear
         self.backgroundColor = UIColor.white
         self.original_size = frame.size
@@ -59,8 +59,8 @@ open class APPBasicTabBar: UITabBar {
     }
     
     private func setItemContentViewUIStyle() {
-        self.itemContentView.backgroundColor = self.barStyle?.barBackgroubColor
-        if self.barStyle?.setCorner == true {
+        self.itemContentView.backgroundColor = self.tBarStyle?.barBackgroubColor
+        if self.tBarStyle?.setCorner == true {
             if jk_isIPhoneNotch {
                 self.itemContentView.corner(30)
             } else {
@@ -71,12 +71,12 @@ open class APPBasicTabBar: UITabBar {
     
     private func layoutItemContent() {
         self.itemContentView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(self.barStyle?.horizationSpacing ?? 0 * 6)
+            make.horizontalEdges.equalToSuperview().inset(self.tBarStyle?.horizationSpacing ?? 0 * 6)
             if jk_isIPhoneNotch {
                 make.top.equalToSuperview().offset(4.0 * 1.5)
                 make.height.equalTo(60)
             } else {
-                make.verticalEdges.equalToSuperview().inset(self.barStyle?.verticalSpacing ?? 0)
+                make.verticalEdges.equalToSuperview().inset(self.tBarStyle?.verticalSpacing ?? 0)
             }
         }
     }

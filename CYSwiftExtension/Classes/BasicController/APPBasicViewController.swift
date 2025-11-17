@@ -12,15 +12,21 @@ import SnapKit
 
 open class APPBasicViewController: UIViewController {
 
-    private(set) lazy var basicScrollContentView: UIScrollView = {
+    open lazy var basicScrollContentView: UIScrollView = {
         let view = UIScrollView(frame: CGRectZero)
         view.contentInsetAdjustmentBehavior = .never
         return view
     }()
     
-    private(set) lazy var gradientView: GradientColorView = {
+    open lazy var gradientView: GradientColorView = {
         let view = GradientColorView()
         view.isHidden = true
+        return view
+    }()
+    
+    open lazy var bgImgView: UIImageView = {
+        let view = UIImageView(frame: CGRectZero)
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -41,11 +47,16 @@ open class APPBasicViewController: UIViewController {
     open func buildPageUI() {
         self.basicScrollContentView.showsVerticalScrollIndicator = false
         self.view.backgroundColor = UIColor.hexStringColor(hexString: "#FFF2EF")
+        self.view.addSubview(self.bgImgView)
         self.view.addSubview(self.gradientView)
         self.view.addSubview(self.basicScrollContentView)
     }
     
     open func layoutPageViews() {
+        self.bgImgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         self.gradientView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

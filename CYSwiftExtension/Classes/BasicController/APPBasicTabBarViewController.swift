@@ -14,6 +14,7 @@ open class APPBasicTabBarViewController: UITabBarController {
     private var vc_array: [UIViewController.Type] = []
     private var img_array: [[String]] = []
     open var barHeight: CGFloat = jk_kTabbarFrameH + 10
+    private var custom_bar_style: APPBasicTabBarStyleConfig?
     
     open override var selectedIndex: Int {
         didSet {
@@ -23,6 +24,7 @@ open class APPBasicTabBarViewController: UITabBarController {
     
     public init(controllers vcArray: [UIViewController.Type], barImages images: [[String]], barStyle: APPBasicTabBarStyleConfig) {
         super.init(nibName: nil, bundle: nil)
+        self.custom_bar_style = barStyle
         self.vc_array.append(contentsOf: vcArray)
         self.img_array.append(contentsOf: images)
         self.buildTabbarUI()
@@ -54,7 +56,7 @@ private extension APPBasicTabBarViewController {
     func buildTabbarUI (){
         assert(!vc_array.isEmpty && !img_array.isEmpty, "⚠️⚠️ === 先设置 控制器集合 & 图片集合 ========")
         APPInfomationCache.saveApplicationInstallMark()
-        self.custom_bar = APPBasicTabBar(frame: CGRect(origin: CGPointZero, size: CGSize(width: jk_kScreenW, height: barHeight)))
+        self.custom_bar = APPBasicTabBar(frame: CGRect(origin: CGPointZero, size: CGSize(width: jk_kScreenW, height: barHeight)), barConfig: self.custom_bar_style)
         self.setValue(self.custom_bar, forKey: "tabBar")
         self.custom_bar?.setTabBarImages(barImages: self.img_array)
         self.custom_bar?.barDelegate = self
