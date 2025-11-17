@@ -23,7 +23,7 @@ open class APPBasicTabBar: UITabBar {
     private let _top_y = 15
     private let _item_padding = 15
     
-    private(set) var itemContentView: UIView = {
+    open var itemContentView: UIView = {
         let view = UIView(frame: CGRectZero)
         view.backgroundColor = UIColor.hexStringColor(hexString: "#3D000A")
         return view
@@ -35,9 +35,7 @@ open class APPBasicTabBar: UITabBar {
         self.backgroundColor = UIColor.white
         self.original_size = frame.size
         
-        self.setItemContentViewUIStyle()
         self.addSubview(self.itemContentView)
-        self.layoutItemContent()
     }
     
     required public init?(coder: NSCoder) {
@@ -56,14 +54,11 @@ open class APPBasicTabBar: UITabBar {
         return super.sizeThatFits(size)
     }
     
-    open func setItemContentViewUIStyle(IPhoneNotchCornerRadius cornerRadius: CGFloat = -1) {
-        
-        if cornerRadius != -1 {
-            if jk_isIPhoneNotch {
-                self.itemContentView.corner(cornerRadius)
-            } else {
-                self.itemContentView.corner((frame.height - 4.0 * 2) * 0.5)
-            }
+    open func setItemContentViewUIStyle() {
+        if jk_isIPhoneNotch {
+            self.itemContentView.corner(30)
+        } else {
+            self.itemContentView.corner((frame.height - 4.0 * 2) * 0.5)
         }
     }
     

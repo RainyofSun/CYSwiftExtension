@@ -10,10 +10,10 @@ import JKSwiftExtension
 
 open class APPBasicTabBarViewController: UITabBarController {
 
-    private(set) var custom_bar: APPBasicTabBar?
+    open var custom_bar: APPBasicTabBar?
     private var vc_array: [UIViewController.Type] = []
     private var img_array: [[String]] = []
-    private(set) var barHeight: CGFloat = jk_kTabbarFrameH + 10
+    open var barHeight: CGFloat = jk_kTabbarFrameH + 10
     
     open override var selectedIndex: Int {
         didSet {
