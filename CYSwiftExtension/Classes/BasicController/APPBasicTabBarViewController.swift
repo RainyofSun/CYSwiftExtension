@@ -21,7 +21,7 @@ open class APPBasicTabBarViewController: UITabBarController {
         }
     }
     
-    public init(controllers vcArray: [UIViewController.Type], barImages images: [[String]]) {
+    public init(controllers vcArray: [UIViewController.Type], barImages images: [[String]], barStyle: APPBasicTabBarStyleConfig) {
         super.init(nibName: nil, bundle: nil)
         self.vc_array.append(contentsOf: vcArray)
         self.img_array.append(contentsOf: images)

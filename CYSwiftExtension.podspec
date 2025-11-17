@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CYSwiftExtension"
-  spec.version      = "1.7.9"
+  spec.version      = "1.8.0"
   spec.summary      = "Common iOS extensions and utilities in Swift and Objective-C."
 
   # This description is used to generate tags and improve search results.
