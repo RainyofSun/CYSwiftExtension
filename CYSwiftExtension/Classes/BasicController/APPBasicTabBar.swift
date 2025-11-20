@@ -100,6 +100,7 @@ open class APPBasicTabBar: UITabBar {
                 button.setTitleColor(barNormalColor, for: UIControl.State.normal)
             }
             
+            button.layoutImageUpTitleDown(spacing: 4)
             self.itemContentView.addSubview(button)
             
             if let _t = _temp_btn {
@@ -159,5 +160,32 @@ private extension APPBasicTabBar {
         self.resetButtonStatus()
         sender.isSelected = !sender.isSelected
         self.barDelegate?.selectedCurrentBarItem(self, item: sender, index: (sender.tag - 1000))
+    }
+}
+
+extension UIButton {
+    func layoutImageUpTitleDown(spacing: CGFloat = 4) {
+        guard let imageSize = self.imageView?.image?.size,
+              let title = self.titleLabel?.text,
+              let font = self.titleLabel?.font else { return }
+
+        let titleSize = (title as NSString).size(withAttributes: [.font: font])
+        
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: spacing,
+            left: -imageSize.width,
+            bottom: -imageSize.height,
+            right: 0
+        )
+
+        self.imageEdgeInsets = UIEdgeInsets(
+            top: -titleSize.height - spacing,
+            left: 0,
+            bottom: 0,
+            right: -titleSize.width
+        )
+
+        self.contentHorizontalAlignment = .center
+        self.contentVerticalAlignment = .center
     }
 }
