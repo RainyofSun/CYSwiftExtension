@@ -81,25 +81,29 @@ open class APPBasicTabBar: UITabBar {
         }
     }
     
-    open func setTabBarImages(barImages:[[String]]) {
-        guard !barImages.isEmpty && barImages.first?.count == barImages.last?.count else {
+    open func setTabBarImages(barSelectedImages:[UIImage], barNormalImages: [UIImage], barTitles: [String]? = nil, barSelectedColor: UIColor? = nil, barNormalColor: UIColor? = nil) {
+        guard !barNormalImages.isEmpty && barNormalImages.count == barSelectedImages.count else {
             return
         }
         
-        let normalImgs = barImages.first
-        let selImgs = barImages.last
-        
         var _temp_btn: UIButton?
-        normalImgs?.enumerated().forEach { (index: Int, img: String) in
+        barNormalImages.enumerated().forEach { (index: Int, img: UIImage) in
             let button = UIButton(type: UIButton.ButtonType.custom)
-            button.setImage(UIImage(named: img), for: UIControl.State.normal)
-            button.setImage(UIImage(named: selImgs![index]), for: UIControl.State.selected)
+            button.setImage(img, for: UIControl.State.normal)
+            button.setImage(barSelectedImages[index], for: UIControl.State.selected)
             button.tag = 1000 + index
             button.addTarget(self, action: #selector(clickBarItem(sender: )), for: UIControl.Event.touchUpInside)
+            if let _titles = barTitles {
+                button.setTitle(_titles[index], for: UIControl.State.normal)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.medium)
+                button.setTitleColor(barSelectedColor, for: UIControl.State.selected)
+                button.setTitleColor(barNormalColor, for: UIControl.State.normal)
+            }
+            
             self.itemContentView.addSubview(button)
             
             if let _t = _temp_btn {
-                if (index + 1) == normalImgs?.count {
+                if (index + 1) == barNormalImages.count {
                     button.snp.makeConstraints { make in
                         make.left.equalTo(_t.snp.right).offset(60)
                         make.centerY.size.equalTo(_t)

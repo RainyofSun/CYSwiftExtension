@@ -9,9 +9,9 @@ import UIKit
 import JKSwiftExtension
 
 public enum Style {
-    case opaque(backgroundColor: UIColor, titleColor: UIColor, font: UIFont)
-    case transparent(titleColor: UIColor, font: UIFont)
-    case `default`(titleColor: UIColor, font: UIFont)
+    case opaque(backgroundColor: UIColor, titleColor: UIColor, font: UIFont, backImg: UIImage)
+    case transparent(titleColor: UIColor, font: UIFont, backImg: UIImage)
+    case `default`(titleColor: UIColor, font: UIFont, backImg: UIImage)
 }
 
 public extension UINavigationBar {
@@ -42,26 +42,35 @@ public extension UINavigationBar {
     private static func makeAppearance(for style: Style) -> UINavigationBarAppearance {
         let appearance = UINavigationBarAppearance()
         var backColor: UIColor = UIColor.black
+        var backImg: UIImage?
         
         switch style {
-        case .opaque(let backgroundColor, let titleColor, let font):
+        case .opaque(let backgroundColor, let titleColor, let font, let back):
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = backgroundColor
             appearance.titleTextAttributes = [.foregroundColor: titleColor, .font: font]
             backColor = titleColor
-        case .transparent(let titleColor, let font):
+            backImg = back
+        case .transparent(let titleColor, let font, let back):
             appearance.configureWithTransparentBackground()
             appearance.titleTextAttributes = [.foregroundColor: titleColor, .font: font]
             backColor = titleColor
-        case .default(let titleColor, let font):
+            backImg = back
+        case .default(let titleColor, let font, let back):
             appearance.configureWithDefaultBackground()
             appearance.titleTextAttributes = [.foregroundColor: titleColor, .font: font]
             backColor = titleColor
+            backImg = back
         }
         
-        let originalImage = UIImage(systemName: "chevron.backward")
-        let tintedImage: UIImage = originalImage?.withTintColor(backColor, renderingMode: .alwaysOriginal) ?? UIImage()
-        appearance.setBackIndicatorImage(tintedImage, transitionMaskImage: tintedImage)
+        if backImg != nil {
+            appearance.setBackIndicatorImage(backImg, transitionMaskImage: backImg)
+        } else {
+            let originalImage = UIImage(systemName: "chevron.backward")
+            let tintedImage: UIImage = originalImage?.withTintColor(backColor, renderingMode: .alwaysOriginal) ?? UIImage()
+            appearance.setBackIndicatorImage(tintedImage, transitionMaskImage: tintedImage)
+        }
+
         appearance.shadowColor = .clear
         
         return appearance

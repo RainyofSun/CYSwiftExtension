@@ -6,14 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CurrentControllerShouldPopProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@protocol CurrentControllerShouldPopProtocol <NSObject>
-
-- (BOOL)shouldPop;
-
-@end
 
 @interface UIViewController (ViewControllerExtension)<CurrentControllerShouldPopProtocol>
 

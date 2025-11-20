@@ -9,11 +9,25 @@ import UIKit
 
 open class APPBasicTabBarStyleConfig: NSObject {
     /// 背景色
-    var barBackgroubColor = UIColor.white
+    public var barBackgroubColor = UIColor.white
     /// 水平间距
-    var horizationSpacing = 0
+    public var horizationSpacing = 0
     /// 垂直间距
-    var verticalSpacing = 0
+    public var verticalSpacing = 0
     /// 是否全圆角
-    var setCorner = false
+    public var setCorner = false
+    /// 导航类
+    public var navClassName: String?
+    /// 控制器类集合
+    public var subControllerArray: [UIViewController.Type]?
+    /// 控制器对应的 Tabbar 图片集合
+    public var barSelectedImagesArray: [UIImage]?
+    /// 控制器对应的 Tabbar 图片集合
+    public var barNormalImagesArray: [UIImage]?
+    /// 控制器对应的 Tabbar 文字集合
+    public var barTitlesArray: [String]?
+    /// 当前选中的 Tabbar 选中颜色
+    public var barSelectedColor: UIColor?
+    /// 未选中的 Tabbar 颜色
+    public var barNormalColor: UIColor?
 }

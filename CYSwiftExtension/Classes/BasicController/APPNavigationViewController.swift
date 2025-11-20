@@ -36,7 +36,7 @@ open class APPNavigationViewController: UINavigationController {
         return false
     }
     
-    open func navigationAppearanceSetting() {
+    open func navigationAppearanceSetting(_ style: Style) {
 //        let appearance = UINavigationBarAppearance()
 //        let att = [NSAttributedString.Key.foregroundColor: UIColor.hexStringColor(hexString: "#27272E"),
 //                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]
@@ -55,7 +55,7 @@ open class APPNavigationViewController: UINavigationController {
 //        self.navigationBar.shadowImage = barShadowImage()
 //        self.navigationBar.titleTextAttributes = att
         
-        UINavigationBar.applyGlobalStyle(Style.opaque(backgroundColor: UIColor.white, titleColor: UIColor.hexStringColor(hexString: "#27272E"), font: UIFont.systemFont(ofSize: 18)))
+        UINavigationBar.applyGlobalStyle(style)
     }
     
     open func buildNavigation() {

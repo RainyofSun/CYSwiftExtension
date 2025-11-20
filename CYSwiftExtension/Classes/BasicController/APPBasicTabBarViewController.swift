@@ -11,8 +11,6 @@ import JKSwiftExtension
 open class APPBasicTabBarViewController: UITabBarController {
 
     open var custom_bar: APPBasicTabBar?
-    private var vc_array: [UIViewController.Type] = []
-    private var img_array: [[String]] = []
     open var barHeight: CGFloat = jk_kTabbarFrameH + 10
     private var custom_bar_style: APPBasicTabBarStyleConfig?
     
@@ -22,11 +20,9 @@ open class APPBasicTabBarViewController: UITabBarController {
         }
     }
     
-    public init(controllers vcArray: [UIViewController.Type], barImages images: [[String]], barStyle: APPBasicTabBarStyleConfig) {
+    public init(barStyle: APPBasicTabBarStyleConfig) {
         super.init(nibName: nil, bundle: nil)
         self.custom_bar_style = barStyle
-        self.vc_array.append(contentsOf: vcArray)
-        self.img_array.append(contentsOf: images)
         self.buildTabbarUI()
     }
     
@@ -54,16 +50,39 @@ open class APPBasicTabBarViewController: UITabBarController {
 
 private extension APPBasicTabBarViewController {
     func buildTabbarUI (){
-        assert(!vc_array.isEmpty && !img_array.isEmpty, "⚠️⚠️ === 先设置 控制器集合 & 图片集合 ========")
+        guard let _style = self.custom_bar_style else {
+            return
+        }
+        
+        assert(!(_style.subControllerArray?.isEmpty ?? true) && !(_style.barSelectedImagesArray?.isEmpty ?? true), "⚠️⚠️ === 先设置 控制器集合 & 图片集合 ========")
+        assert(self.custom_bar_style?.navClassName != nil, "⚠️⚠️ === 先设置 导航控制器类名 ========")
+        
         APPInfomationCache.saveApplicationInstallMark()
         self.custom_bar = APPBasicTabBar(frame: CGRect(origin: CGPointZero, size: CGSize(width: jk_kScreenW, height: barHeight)), barConfig: self.custom_bar_style)
         self.setValue(self.custom_bar, forKey: "tabBar")
-        self.custom_bar?.setTabBarImages(barImages: self.img_array)
+        self.custom_bar?.setTabBarImages(barSelectedImages: _style.barSelectedImagesArray ?? [], barNormalImages: _style.barNormalImagesArray ?? [], barTitles: _style.barTitlesArray, barSelectedColor: _style.barSelectedColor, barNormalColor: _style.barNormalColor)
+        
         self.custom_bar?.barDelegate = self
+        guard let className = self.custom_bar_style?.navClassName else {
+            print("navClassName is nil")
+            return
+        }
+        
+        // 自动补全模块名（Pod/Framework 中非常重要）
+        let moduleName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
+        let fullName = "\(moduleName).\(className)"
         
         var listVC: [UIViewController] = []
-        vc_array.forEach { (item: UIViewController.Type) in
-            listVC.append(APPNavigationViewController(rootViewController: item.init()))
+        _style.subControllerArray?.forEach { (item: UIViewController.Type) in
+
+            guard let cls = NSClassFromString(fullName) as? UINavigationController.Type else {
+                print("❌ 无法根据类名创建 UINavigationController：\(fullName)")
+                return
+            }
+
+            // 创建实例
+            let nav = cls.init(rootViewController: item.init())
+            listVC.append(nav)
         }
         
         self.viewControllers = listVC
