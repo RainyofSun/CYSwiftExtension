@@ -70,11 +70,12 @@ open class APPBasicTabBar: UITabBar {
     }
     
     private func layoutItemContent() {
+        let itemHeight: CGFloat = (self.original_size?.height ?? 0) * (self.tBarStyle?.itemHeightScale ?? 0)
         self.itemContentView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(self.tBarStyle?.horizationSpacing ?? 0 * 6)
             if jk_isIPhoneNotch {
-                make.top.equalToSuperview().offset(4.0 * 1.5)
-                make.height.equalTo(60)
+                make.top.equalToSuperview().offset(self.tBarStyle?.verticalSpacing ?? 0)
+                make.height.equalTo(itemHeight)
             } else {
                 make.verticalEdges.equalToSuperview().inset(self.tBarStyle?.verticalSpacing ?? 0)
             }
@@ -106,21 +107,20 @@ open class APPBasicTabBar: UITabBar {
             if let _t = _temp_btn {
                 if (index + 1) == barNormalImages.count {
                     button.snp.makeConstraints { make in
-                        make.left.equalTo(_t.snp.right).offset(60)
+                        make.left.equalTo(_t.snp.right).offset(self.tBarStyle?.itemSpace ?? 0)
                         make.centerY.size.equalTo(_t)
-                        make.right.equalToSuperview().offset(-50)
+                        make.right.equalToSuperview().offset(-(self.tBarStyle?.rightSpace ?? 0))
                     }
                 } else {
                     button.snp.makeConstraints { make in
-                        make.left.equalTo(_t.snp.right).offset(60)
+                        make.left.equalTo(_t.snp.right).offset(self.tBarStyle?.itemSpace ?? 0)
                         make.centerY.size.equalTo(_t)
                     }
                 }
             } else {
                 button.snp.makeConstraints { make in
-                    make.centerY.equalToSuperview()
-                    make.left.equalToSuperview().offset(50)
-                    make.height.equalTo(35)
+                    make.centerY.height.equalToSuperview()
+                    make.left.equalToSuperview().offset(self.tBarStyle?.leftSpace ?? 0)
                 }
             }
             

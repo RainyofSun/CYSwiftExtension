@@ -16,6 +16,14 @@ open class APPBasicTabBarStyleConfig: NSObject {
     public var verticalSpacing = 0
     /// 是否全圆角
     public var setCorner = false
+    /// item 左边距 默认 50
+    public var leftSpace = 50
+    /// item 右边距 默认 50
+    public var rightSpace = 50
+    /// item 间距 默认 50
+    public var itemSpace = 50
+    /// item 高度比例 默认是 Tabbar 高度的 0.8
+    public var itemHeightScale = 0.8
     /// 导航类
     public var navClassName: String?
     /// 控制器类集合
