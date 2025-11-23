@@ -39,7 +39,7 @@ open class APPBasicTabBarViewController: UITabBarController {
         
     }
     
-    open func currentBarItemCanSelected() -> Bool {
+    open func currentBarItemCanSelected(shouldSelectedIndex: Int) -> Bool {
         return true
     }
     
@@ -95,7 +95,7 @@ private extension APPBasicTabBarViewController {
 
 extension APPBasicTabBarViewController: BasicTabbarProtocol {
     public func canSelectedCurrentBarItem(shouldSelectedIndex: Int) -> Bool {
-        return currentBarItemCanSelected()
+        return currentBarItemCanSelected(shouldSelectedIndex: shouldSelectedIndex)
     }
     
     public func selectedCurrentBarItem(_ tabbr: APPBasicTabBar, item: UIButton, index: Int) {

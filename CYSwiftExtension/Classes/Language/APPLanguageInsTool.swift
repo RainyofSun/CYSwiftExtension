@@ -14,8 +14,10 @@ public enum InterbationalLanguage: Int {
     case Spanish = 2
     /// 越南语
     case Vietnamese = 3
+    /// 印尼语
+    case Indonesian = 4
     /// 跟随系统
-    case Other = 4
+    case Other = 5
 }
 
 public class APPLanguageInsTool: NSObject {
@@ -54,6 +56,8 @@ private extension APPLanguageInsTool {
             type_str = "es"
         case .Vietnamese:
             type_str = "vi"
+        case .Indonesian:
+            type_str = "id"
         case .Other:
             type_str = Locale.current.languageCode ?? ""
         }
