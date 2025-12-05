@@ -110,13 +110,13 @@ public class APPMultimediaTool: NSObject {
     private func showSystemAlertController(_ title: String) {
         let alertVC: UIAlertController = UIAlertController(title: nil, message: title, preferredStyle: UIAlertController.Style.alert)
         let okAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (okAction: UIAlertAction) in
-            
-        }
-        
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (cancel: UIAlertAction) in
             if UIApplication.shared.canOpenURL(NSURL(string: UIApplication.openSettingsURLString)! as URL) {
                 UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString)! as URL, options: [:], completionHandler: nil)
             }
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (cancel: UIAlertAction) in
+            
         }
         
         alertVC.addAction(okAction)

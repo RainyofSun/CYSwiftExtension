@@ -133,6 +133,9 @@
     [geo reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         weakSelf.placeMark = placemarks.firstObject;
         weakSelf.location = location;
+        if (weakSelf.refreshCallBack) {
+            weakSelf.refreshCallBack();
+        }
     }];
 }
 

@@ -35,6 +35,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL phoneOpenLocation;
 @property (nonatomic, strong) CLPlacemark *placeMark;
 @property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, copy) void(^refreshCallBack)(void);
 
 + (instancetype)authorization;
 - (VCAPPAuthorizationStatus)locationAuthorization;

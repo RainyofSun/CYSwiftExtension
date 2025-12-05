@@ -42,6 +42,7 @@ public class ProtocolView: UIView {
             make.verticalEdges.equalToSuperview().inset(APP_PADDING_UNIT)
             make.height.greaterThanOrEqualTo(APP_PADDING_UNIT * 6)
             make.left.equalTo(self.agreeBtn.snp.right).offset(APP_PADDING_UNIT)
+            make.right.equalToSuperview().offset(-APP_PADDING_UNIT)
         }
         
         self.agreeBtn.snp.makeConstraints { make in
